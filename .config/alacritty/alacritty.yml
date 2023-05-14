@@ -1,7 +1,27 @@
+# Copyright (c) 2017-present Arctic Ice Studio <development@arcticicestudio.com>
+# Copyright (c) 2017-present Sven Greb <code@svengreb.de>
+
+# Project:    Nord Alacritty
+# Version:    0.1.0
+# Repository: https://github.com/arcticicestudio/nord-alacritty
+# License:    MIT
+# References:
+#   https://github.com/alacritty/alacritty
+# env:
+#   TERM: alacritty
+
+window:
+  padding:
+      x: 8
+      y: 8
+  # Spread additional padding evenly around the terminal content.
+  dynamic_padding: true
+  decorations: "none"
+
 shell:
-  program: /usr/bin/fish
+  program: fish
+
 font:
-  size: 12.0
   normal:
     family: Hack Nerd Font
   bold:
@@ -10,11 +30,22 @@ font:
     family: Hack Nerd Font
   bold_italic:
     family: Hack Nerd Font
+  size: 12.0
 
-window:
-  padding:
-    x: 10
-    y: 10
+  # Offset is the extra space around each character. `offset.y` can be thought of
+  # as modifying the line spacing, and `offset.x` as modifying the letter spacing
+  # I've given in 14 spacing which fits really well with my fonts, you may change it
+  # to your convenience but make sure to adjust 'glyph_offset' appropriately post that
+  offset:
+    x: 0
+    y: 1
+  # By default when you change the offset above you'll see an issue, where the texts are bottom
+  # aligned with the cursor, this is to make sure they center align.
+  # This offset should usually be 1/2 of the above offset-y being set.
+  glyph_offset:
+    x: 0
+    y: 0
+
 
 import:
   # uncomment the flavour you want below:
@@ -22,3 +53,10 @@ import:
 #  - ~/.config/alacritty/catppuccin/catppuccin-macchiato.yml
 #  - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
 #  - ~/.config/alacritty/catppuccin/catppuccin-latte.yml
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: true
+
