@@ -38,7 +38,7 @@ font:
   # to your convenience but make sure to adjust 'glyph_offset' appropriately post that
   offset:
     x: 0
-    y: 1
+    y: 0
   # By default when you change the offset above you'll see an issue, where the texts are bottom
   # aligned with the cursor, this is to make sure they center align.
   # This offset should usually be 1/2 of the above offset-y being set.
