@@ -24,7 +24,7 @@ require("lazy").setup({
         name = "catppuccin",
         config = function(_, _)
             vim.cmd(
-                'colorscheme catppuccin-macchiato')
+                'colorscheme catppuccin-mocha')
         end
     },
     { "nvim-tree/nvim-web-devicons" },
