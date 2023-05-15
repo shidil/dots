@@ -3,13 +3,13 @@
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 24,
     "margin": "-4 0 0 0",
-    "modules-left": ["wlr/workspaces", "tray", "custom/cava-internal"],
+    "modules-left": ["sway/workspaces", "tray", "sway/mode", "custom/cava-internal"],
     "modules-center": ["clock"],
     "modules-right": ["pulseaudio", "temperature", "cpu", "memory", "network", "custom/power"], 
     
  // Modules configuration
  
-    "wlr/workspaces": {
+    "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
         "format": "{icon}",
