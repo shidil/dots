@@ -1,0 +1,3 @@
+[cmd_duration]
+min_time = 10
+format = 'underwent [$duration](bold yellow)'
