@@ -5,7 +5,7 @@
     "margin": "-4 0 0 0",
     "modules-left": ["sway/workspaces", "tray", "sway/mode", "custom/cava-internal"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "temperature", "cpu", "memory", "network", "custom/power"], 
+    "modules-right": ["pulseaudio", "temperature", "cpu", "memory", "temperature#gpu", "network", "custom/power"], 
     
  // Modules configuration
  
@@ -56,6 +56,12 @@
         "layer": "below",
         "output": "all"
     },      
+    "custom/gpu-usage": {
+      "exec": "cat /sys/class/hwmon/hwmon5/device/gpu_busy_percent",
+      "format": "󰩧 {}%",
+      "return-type": "",
+      "interval": 10
+    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -93,6 +99,13 @@
     "temperature": {
         // "thermal-zone": 2,
         "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C ",
+        "format": "  {temperatureC}°C"
+    },
+    "temperature#gpu": {
+        // "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
         "critical-threshold": 80,
         // "format-critical": "{temperatureC}°C ",
         "format": "  {temperatureC}°C"
