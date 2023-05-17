@@ -124,7 +124,7 @@ window#waybar {
 #tray,
 #custom-power,
 #custom-pacman {
-    padding: 5px 8px;
+    padding: 4px 8px;
     border-style: solid;
     background-color: shade(@base, 1.1);
     opacity: 1;

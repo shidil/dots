@@ -1,7 +1,7 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "height": 24,
+    "height": 40,
     "margin": "-4 0 0 0",
     "modules-left": ["sway/workspaces", "tray", "sway/mode", "custom/cava-internal"],
     "modules-center": ["clock"],
