@@ -29,7 +29,8 @@ set $crust     #181926
 #exec_always ~/.config/sway/scripts/import-gsettings
 
 # Set inner/outer gaps
-gaps inner 10
+gaps inner 8
+gaps outer 0
 
 # Hide titlebar on windows: 
 default_border pixel 2
