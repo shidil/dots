@@ -147,6 +147,9 @@ bindsym $mod+r mode "resize"
 bindsym $mod+Home exec $grimshot --notify copy area 
 bindsym $mod+Shift+Home exec $grimshot --notify save area 
 
+# Notifications
+bindsym $mod+Alt+Home exec swaync-client -t
+
 # Multimedia keys
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
