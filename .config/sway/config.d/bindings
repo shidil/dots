@@ -1,6 +1,8 @@
 # Windows/Command key
 set $mod Mod4
 
+set $grimshot ~/.config/sway/scripts/grimshot
+
 # Lock screen
 bindsym $mod+Ctrl+l exec swaylock --image ~/Pictures/wallpapers/lock.jpg --indicator-caps-lock
 
@@ -142,7 +144,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Screenshits TBD
-#
+bindsym $mod+Home exec $grimshot --notify copy area 
+bindsym $mod+Shift+Home exec $grimshot --notify save area 
 
 # Multimedia keys
 # Pulse Audio controls
