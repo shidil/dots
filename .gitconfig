@@ -16,3 +16,7 @@
 [user]
 	email = shidil@live.com
 	name = Shidil Eringa
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = true
