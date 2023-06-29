@@ -17,7 +17,7 @@ set -Ux FZF_DEFAULT_OPTS "\
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
 --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
 
-set EDITOR "nvim"
+set -gx EDITOR "nvim"
 set BAT_THEME "Catppuccin-mocha"
 
 # Colors for man pages https://jedsoft.org/most/
