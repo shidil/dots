@@ -37,7 +37,7 @@ alias find "fd"
 alias grep "rg"
 alias ack "rg"
 # 
-alias dir "br"
+alias dir "exa --color always --tree --level=1 --icons --git"
 alias vi "nvim"
 alias vim "nvim"
 alias k "kubectl"
