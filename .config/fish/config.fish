@@ -42,9 +42,6 @@ alias vi "nvim"
 alias vim "nvim"
 alias k "kubectl"
 
-alias zs 'zellij attach $(zellij list-sessions|fzf)'
-alias zn 'zellij -s $(basename "$PWD")'
-
 # alias cd "z"
 alias less "bat"
 alias k9s "XDG_CONFIG_HOME=~/.config ~/go/bin/k9s"
