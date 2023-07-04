@@ -29,6 +29,10 @@ set -xU LESS_TERMCAP_so (printf "\e[01;44;33m")
 set -xU LESS_TERMCAP_ue (printf "\e[0m")
 set -xU LESS_TERMCAP_us (printf "\e[01;32m")
 
+zoxide init fish | source
+starship init fish | source
+direnv hook fish | source
+
 # https://github.com/ogham/exa
 alias ls "exa"
 # https://github.com/sharkdp/fd
@@ -42,13 +46,9 @@ alias vi "nvim"
 alias vim "nvim"
 alias k "kubectl"
 
-# alias cd "z"
+alias cd "z"
 alias less "bat"
 alias k9s "XDG_CONFIG_HOME=~/.config ~/go/bin/k9s"
-
-zoxide init fish | source
-starship init fish | source
-direnv hook fish | source
 
 set -x AWS_PROFILE default
 set -x AWS_REGION ap-southeast-2
