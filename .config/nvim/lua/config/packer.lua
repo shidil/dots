@@ -44,6 +44,7 @@ require("lazy").setup({
                 'williamboman/mason.nvim',
                 build = function()
                     pcall(vim.cmd, 'MasonUpdate')
+
                 end,
             },
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
@@ -54,6 +55,9 @@ require("lazy").setup({
             { 'L3MON4D3/LuaSnip' },     -- Required
             {
                 'lewis6991/gitsigns.nvim',
+                opts = function()
+                    require('gitsigns').setup()
+                end
             },
         }
     },
