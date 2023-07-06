@@ -54,9 +54,6 @@ require("lazy").setup({
             { 'L3MON4D3/LuaSnip' },     -- Required
             {
                 'lewis6991/gitsigns.nvim',
-                opts = function()
-                    require('gitsigns').setup()
-                end
             },
         }
     },
@@ -108,6 +105,5 @@ require("lazy").setup({
             -- use gz mappings instead of s to prevent conflict with leap
             require("mini.surround").setup(opts)
         end,
-    },
-    { "github/copilot.vim" }
+    }
 })
