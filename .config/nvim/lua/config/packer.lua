@@ -32,7 +32,7 @@ require("lazy").setup({
     { "nvim-treesitter/playground" },
     { "ThePrimeagen/harpoon" },
     { "mbbill/undotree" },
-    { "tpope/vim-fugitive" },
+    -- { "tpope/vim-fugitive" },
     {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
@@ -44,7 +44,6 @@ require("lazy").setup({
                 'williamboman/mason.nvim',
                 build = function()
                     pcall(vim.cmd, 'MasonUpdate')
-
                 end,
             },
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
@@ -109,5 +108,11 @@ require("lazy").setup({
             -- use gz mappings instead of s to prevent conflict with leap
             require("mini.surround").setup(opts)
         end,
+    },
+    {
+        "ggandor/leap.nvim",
+        config = function(_, opts)
+            require('leap').add_default_mappings()
+        end
     }
 })
