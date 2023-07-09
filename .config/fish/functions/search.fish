@@ -17,7 +17,7 @@ function search_vi
 end
 
 function find_run
-  fd $argv[1] | fzf | xargs $argv[2]
+  fd -H $argv[1] | fzf | xargs $argv[2]
 end
 
 function find_vi
@@ -31,6 +31,3 @@ end
 # search "term" | xargs nvim
 # search_vi "term"
 
-function replace
-  ag -0 -l --nocolor $argv[1] | xargs -0 perl -pi.bak -e "s/$argv[1]/$argv[2]/g"
-end
