@@ -45,6 +45,7 @@ alias dir "exa --color always --tree --level=1 --icons --git"
 alias vi "nvim"
 alias vim "nvim"
 alias k "kubectl"
+alias ed "find_vi"
 
 alias cd "z"
 alias less "bat"
