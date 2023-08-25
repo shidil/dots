@@ -1,3 +1,106 @@
+format = """
+$aws \
+$kubernetes\
+\n\
+$username\
+$hostname\
+$localip\
+$shlvl\
+$directory\
+$vcsh\
+$fossil_branch\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$gcloud\
+$openstack\
+$azure\ 
+$crystal\
+$env_var\
+$custom\
+$sudo\
+$cmd_duration\
+$line_break\
+$jobs\
+$battery\
+$time\
+$status\
+$os\
+$container\
+$shell\
+$character"""
+
 [cmd_duration]
-min_time = 10
-format = 'underwent [$duration](bold yellow)'
+min_time = 0
+
+[aws]
+force_display = true
+format = '[$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+
+[aws.region_aliases]
+ap-southeast-2 = 'au'
+ap-south-1 = 'in'
+
+[kubernetes]
+disabled = false
+format = '[$symbol$context( \($namespace\))]($style) ' 
+
+[nodejs]
+format = '[$symbol$version](bold green) '
+
+[golang]
+format = '[$symbol$version](bold cyan) '
+
