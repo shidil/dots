@@ -18,7 +18,7 @@ require("lazy").setup({
         tag = '0.1.1',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
-    { "jvgrootveld/telescope-zoxide" },
+    -- { "jvgrootveld/telescope-zoxide" },
     {
         "catppuccin/nvim",
         name = "catppuccin",
@@ -29,7 +29,8 @@ require("lazy").setup({
     },
     { "nvim-tree/nvim-web-devicons" },
     { "nvim-treesitter/nvim-treesitter", name = "treesitter", build = ":TSUpdate" },
-    { "nvim-treesitter/playground" },
+    { "nvim-treesitter/nvim-treesitter-textobjects" },
+    -- { "nvim-treesitter/playground" },
     { "ThePrimeagen/harpoon" },
     { "mbbill/undotree" },
     -- { "tpope/vim-fugitive" },
