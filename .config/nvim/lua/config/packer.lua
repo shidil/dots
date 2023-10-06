@@ -28,7 +28,7 @@ require("lazy").setup({
         end
     },
     { "nvim-tree/nvim-web-devicons" },
-    { "nvim-treesitter/nvim-treesitter", name = "treesitter", build = ":TSUpdate" },
+    { "nvim-treesitter/nvim-treesitter",            name = "treesitter", build = ":TSUpdate" },
     { "nvim-treesitter/nvim-treesitter-textobjects" },
     -- { "nvim-treesitter/playground" },
     { "ThePrimeagen/harpoon" },
@@ -115,5 +115,6 @@ require("lazy").setup({
         config = function(_, opts)
             require('leap').add_default_mappings()
         end
-    }
+    },
+    { "mg979/vim-visual-multi" }
 })
