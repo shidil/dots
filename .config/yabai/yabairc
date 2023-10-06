@@ -1,0 +1,59 @@
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+sudo yabai --load-sa
+
+yabai -m config layout bsp
+
+# Set all padding and gaps to 5pt (default: 0)
+
+yabai -m config top_padding    6
+
+yabai -m config bottom_padding 6
+
+yabai -m config left_padding   6
+
+yabai -m config right_padding  6
+
+yabai -m config window_gap     6
+
+# set mouse interaction modifier key (default: fn)
+
+yabai -m config mouse_modifier fn
+
+# set modifier + left-click drag to move window (default: move)
+
+yabai -m config mouse_action1 move
+
+# set modifier + right-click drag to resize window (default: resize)
+
+yabai -m config mouse_action2 resize
+
+# set focus follows mouse mode (default: off, options: off, autoraise, autofocus)
+
+yabai -m config focus_follows_mouse autoraise
+
+# set mouse follows focus mode (default: off)
+
+yabai -m config mouse_follows_focus on
+
+# floating windows are always on top (default: off)
+
+yabai -m config window_topmost on
+
+# modify window shadows (default: on, options: on, off, float)
+
+# example: show shadows only for floating windows
+
+yabai -m config window_shadow float
+
+# window opacity (default: off)
+
+# example: render all unfocused windows with 90% opacity
+
+yabai -m config window_opacity on
+
+yabai -m config active_window_opacity 1.0
+
+yabai -m config normal_window_opacity 0.98
+
+
