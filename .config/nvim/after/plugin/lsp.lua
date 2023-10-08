@@ -29,6 +29,13 @@ lsp.ensure_installed({
     'lua_ls',
 })
 
+lsp.set_sign_icons({
+    error = '✘',
+    warn = '▲',
+    hint = '⚑',
+    info = '»'
+})
+
 lsp.format_on_save({
     servers = {
         ['lua_ls'] = { 'lua' },
@@ -44,7 +51,21 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
 })
 
-lsp.setup_nvim_cmp({ mapping = cmp_mappings })
+require('luasnip.loaders.from_vscode').lazy_load()
+
+lsp.setup_nvim_cmp({
+    mapping = cmp_mappings,
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'luasnip' },
+    },
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
+})
 
 require 'nvim-treesitter.configs'.setup {
     textobjects = {

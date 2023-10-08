@@ -31,7 +31,7 @@ require("lazy").setup({
     { "nvim-treesitter/nvim-treesitter",            name = "treesitter", build = ":TSUpdate" },
     { "nvim-treesitter/nvim-treesitter-textobjects" },
     -- { "nvim-treesitter/playground" },
-    { "ThePrimeagen/harpoon" },
+    { "ThePrimeagen/harpoon",                       event = "VeryLazy" },
     { "mbbill/undotree" },
     -- { "tpope/vim-fugitive" },
     {
@@ -52,7 +52,12 @@ require("lazy").setup({
             -- Autocompletion
             { 'hrsh7th/nvim-cmp' },     -- Required
             { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'L3MON4D3/LuaSnip' },     -- Required
+            {
+                "L3MON4D3/LuaSnip",
+                dependencies = { "rafamadriz/friendly-snippets" },
+            },
+            { 'saadparwaiz1/cmp_luasnip' },
+            { 'hrsh7th/cmp-buffer' },
             {
                 'lewis6991/gitsigns.nvim',
                 opts = function()
@@ -61,9 +66,9 @@ require("lazy").setup({
             },
         }
     },
-    { "jose-elias-alvarez/null-ls.nvim" },
-    { "lukas-reineke/indent-blankline.nvim" },
-    { "nvim-lualine/lualine.nvim",          event = "VeryLazy" },
+    { "jose-elias-alvarez/null-ls.nvim",     event = "VeryLazy" },
+    { "lukas-reineke/indent-blankline.nvim", event = "VeryLazy" },
+    { "nvim-lualine/lualine.nvim",           event = "VeryLazy" },
     -- auto pairs
     {
         "echasnovski/mini.pairs",
@@ -76,6 +81,7 @@ require("lazy").setup({
     -- surround
     {
         "echasnovski/mini.surround",
+        event = "VeryLazy",
         keys = function(_, keys)
             -- Populate the keys based on the user's options
             local plugin = require("lazy.core.config").spec.plugins["mini.surround"]
@@ -112,9 +118,10 @@ require("lazy").setup({
     },
     {
         "ggandor/leap.nvim",
+        event = "VeryLazy",
         config = function(_, opts)
             require('leap').add_default_mappings()
         end
     },
-    { "mg979/vim-visual-multi" }
+    { "mg979/vim-visual-multi", event = "VeryLazy" }
 })
