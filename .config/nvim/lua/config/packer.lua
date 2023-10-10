@@ -31,7 +31,8 @@ require("lazy").setup({
     { "nvim-treesitter/nvim-treesitter",            name = "treesitter", build = ":TSUpdate" },
     { "nvim-treesitter/nvim-treesitter-textobjects" },
     -- { "nvim-treesitter/playground" },
-    { "ThePrimeagen/harpoon",                       event = "VeryLazy" },
+    -- https://github.com/ThePrimeagen/harpoon/pull/321
+    -- { "ThePrimeagen/harpoon",                       event = "VeryLazy" },
     { "mbbill/undotree" },
     -- { "tpope/vim-fugitive" },
     {
