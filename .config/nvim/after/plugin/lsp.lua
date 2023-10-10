@@ -1,9 +1,6 @@
-local lsp = require('lsp-zero').preset({
-    manage_nvim_cmp = {
-        set_sources = 'recommended'
-    }
-})
+local lsp = require('lsp-zero')
 
+-- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/lsp.md#creating-new-keybindings
 lsp.on_attach(function(client, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
     vim.keymap.set('n', 'ga', vim.lsp.buf.code_action)
@@ -19,16 +16,7 @@ lsp.on_attach(function(client, bufnr)
     end)
 end)
 
-
-lsp.ensure_installed({
-    -- Replace these with whatever servers you want to install
-    'tsserver',
-    'eslint',
-    'rust_analyzer',
-    'gopls',
-    'lua_ls',
-})
-
+-- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/lsp.md#use-icons-in-the-sign-column
 lsp.set_sign_icons({
     error = '✘',
     warn = '▲',
@@ -36,25 +24,54 @@ lsp.set_sign_icons({
     info = '»'
 })
 
+-- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/lsp.md#enable-format-on-save
 lsp.format_on_save({
     servers = {
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
         ['gopls'] = { 'go' },
-        ['null-ls'] = { 'typescript', 'javascript', 'lua', 'typescriptreact' },
+        ['lua-ls'] = { 'lua' },
+        -- FIXME: https://github.com/jose-elias-alvarez/null-ls.nvim/issues/1621
+        -- https://github.com/dietrichm/dotfiles/issues/138
+        -- ['null-ls'] = { 'typescript', 'javascript', 'typescriptreact' },
     }
 })
 
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-    ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
+-- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/lsp.md#automatic-installs
+require('mason').setup({})
+require('mason-lspconfig').setup({
+    ensure_installed = {
+        'tsserver',
+        'eslint',
+        'rust_analyzer',
+        'gopls',
+        'lua_ls',
+    },
+    handlers = {
+        lsp.default_setup,
+        lua_ls = function()
+            local lua_opts = lsp.nvim_lua_ls()
+            require('lspconfig').lua_ls.setup(lua_opts)
+        end,
+    }
 })
+
+
+
+local cmp = require('cmp')
+local cmp_format = lsp.cmp_format()
 
 require('luasnip.loaders.from_vscode').lazy_load()
 
-lsp.setup_nvim_cmp({
-    mapping = cmp_mappings,
+-- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/autocomplete.md#adding-a-source
+cmp.setup({
+    formatting = cmp_format,
+    mapping = cmp.mapping.preset.insert({
+        -- scroll up and down the documentation window
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
+    }),
     sources = {
         { name = 'nvim_lsp' },
         { name = 'buffer' },
@@ -158,25 +175,3 @@ require 'nvim-treesitter.configs'.setup {
         },
     },
 }
-
--- (Optional) Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.setup()
-
-local null_ls = require("null-ls")
-local null_opts = lsp.build_options('null-ls', {})
-
-null_ls.setup({
-    on_attach = function(client, bufnr)
-        null_opts.on_attach(client, bufnr)
-        ---
-        -- you can add other stuff here....
-        ---
-    end,
-    sources = {
-        null_ls.builtins.formatting.prettier,
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.completion.spell,
-    },
-})
