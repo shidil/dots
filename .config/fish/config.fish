@@ -29,19 +29,22 @@ set -xU LESS_TERMCAP_so (printf "\e[01;44;33m")
 set -xU LESS_TERMCAP_ue (printf "\e[0m")
 set -xU LESS_TERMCAP_us (printf "\e[01;32m")
 
+# gpg pinentry
+set -x GPG_TTY $(tty)
+
 zoxide init fish | source
 starship init fish | source
 direnv hook fish | source
 
-# https://github.com/ogham/exa
-alias ls "exa"
+# https://github.com/eza-community/eza
+alias ls "eza"
 # https://github.com/sharkdp/fd
 alias find "fd"
 # https://github.com/BurntSushi/ripgrep
 alias grep "rg"
 alias ack "rg"
 # 
-alias dir "exa --color always --tree --level=1 --icons --git"
+alias dir "eza --color always --tree --level=1 --icons --git"
 alias vi "nvim"
 alias vim "nvim"
 alias k "kubectl"
