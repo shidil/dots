@@ -145,6 +145,10 @@
 
       # sound
       pavucontrol
+
+      # gaming
+      gamemode
+      mangohud
     ];
   };
 
