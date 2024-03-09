@@ -1,0 +1,7 @@
+.config/cef_user_data/
+.config/dconf/
+.config/fish/fish_variables
+.config/go/telemetry
+.config/pavucontrol.ini
+.config/pulse/
+.local/share/fonts/.uuid
