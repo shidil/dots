@@ -20,6 +20,9 @@
     "steam-run"
   ];
 
+  # Enable flakes feature, and nix-command tool
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -117,7 +120,6 @@
       # essentials
       firefox
       tree
-      git
       neovim
       jq
       gcc13
@@ -126,11 +128,11 @@
 
       # window manager customization
       fuzzel
+      libnotify
       swaynotificationcenter
       waybar
       slurp
       grim
-      xdg-utils
 
       # shell
       alacritty # gpu accelerated terminal
@@ -155,14 +157,19 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    neofetch
-    curl
-    wl-clipboard
-    libnotify
+    neovim
+    wget 
+    git # many tools, and flakes depend on git.
     psmisc # killall, fuser
+    xdg-utils # open
+    neofetch # view system information in a nutshell
+    wl-clipboard # wl-copy wl-paste clipboard access, and manipulaiton
   ];
+  environment.variables.EDITOR = "nvim";
+  environment.shellAliases = {
+    vi = "nvim";
+    vim = "nvim";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
