@@ -118,43 +118,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.shidil = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      # essentials
-      firefox
-      tree
-      neovim
-      jq
-      gcc13
-      gnumake
-      cmake
-
-      # window manager customization
-      fuzzel
-      libnotify
-      swaynotificationcenter
-      waybar
-      slurp
-      grim
-
-      # shell
-      alacritty # gpu accelerated terminal
-      fish # shell for the cultured
-      zoxide # convenient cd alternative
-      fd # fast find alternative
-      eza # convenient ls alternative
-      ripgrep # ultra fast grep
-      sd # convenient sd alternative
-      starship # stylish prompt
-      fzf
-
-      # sound
-      pavucontrol
-
-      # gaming
-      gamemode
-      mangohud
-    ];
+    extraGroups = [ "wheel" "networkmanager" "docker" ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
