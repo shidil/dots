@@ -37,7 +37,7 @@ starship init fish | source
 direnv hook fish | source
 
 # https://github.com/eza-community/eza
-alias ls "eza"
+alias ls "eza -w 100"
 # https://github.com/sharkdp/fd
 alias find "fd"
 # https://github.com/BurntSushi/ripgrep
