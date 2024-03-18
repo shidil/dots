@@ -33,7 +33,7 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs-latest; [
     # essentials
-    firefox
+    pkgs.firefox
     tree
     jq
     gcc13
