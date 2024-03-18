@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{ 
+  pkgs,
+  config,
+  pkgs-latest,
+  ...
+}:
 
 {
   home.username = "shidil";
@@ -26,7 +31,7 @@
   };
 
   # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [
+  home.packages = with pkgs-latest; [
     # essentials
     firefox
     tree
