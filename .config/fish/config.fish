@@ -44,7 +44,7 @@ alias find "fd"
 alias grep "rg"
 alias ack "rg"
 # 
-alias dir "eza --color always --tree --level=1 --icons --git"
+alias dir "eza --color always --tree --level=1 --icons --git --group-directories-first"
 alias vi "nvim"
 alias vim "nvim"
 alias k "kubectl"
