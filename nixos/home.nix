@@ -47,6 +47,7 @@
     waybar
     slurp
     grim
+    wf-recorder
 
     # shell
     alacritty # gpu accelerated terminal
@@ -62,9 +63,18 @@
     # sound
     pavucontrol
 
+    # multimedia
+    audacious
+    gimp
+    mpv
+
     # gaming
     gamemode
     mangohud
+
+    # developer
+    rust-bindgen
+    rustup
 
     # archives
     zip
