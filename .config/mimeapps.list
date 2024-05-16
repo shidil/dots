@@ -1,0 +1,24 @@
+[Default Applications]
+text/plain=firefox.desktop
+image/png=firefox.desktop
+text/csv=userapp-gedit-67RIK2.desktop
+application/pdf=firefox.desktop
+image/jpeg=firefox.desktop
+video/mp4=firefox.desktop
+image/webp=firefox.desktop
+audio/x-vorbis+ogg=firefox.desktop
+audio/flac=audacious.desktop
+
+[Added Associations]
+text/plain=org.gnome.gedit.desktop;firefox.desktop;
+image/png=firefox.desktop;
+text/csv=nvim.desktop;userapp-gedit-67RIK2.desktop;
+application/pdf=firefox.desktop;
+image/jpeg=firefox.desktop;
+video/mp4=firefox.desktop;
+text/markdown=org.gnome.gedit.desktop;
+text/x-log=org.gnome.gedit.desktop;
+application/yaml=org.gnome.gedit.desktop;
+image/webp=firefox.desktop;
+audio/x-vorbis+ogg=firefox.desktop;
+audio/flac=audacious.desktop;
