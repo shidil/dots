@@ -145,6 +145,29 @@
     enable = true;
     enableSSHSupport = false;
   };
+  
+  # Run unpatched dynamic binaries on NixOS 
+  # https://nix.dev/guides/faq.html#how-to-run-non-nix-executables
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    # Add any missing dynamic libraries for unpackaged programs
+    # here, NOT in environment.systemPackages
+    xorg.libX11
+    xorg.libXi
+    xorg.libXext
+    xorg.libxcb
+    xorg.libxkbfile
+    libpulseaudio
+    libpng
+    zlib
+    nss
+    libusb
+    nspr
+    expat
+    libdrm
+    libuuid
+    libbsd
+  ];
 
   # List services that you want to enable:
 
