@@ -15,7 +15,7 @@ require("lazy").setup({
     --"folke/which-key.nvim",
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.3',
+        tag = '0.1.6',
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
     -- { "jvgrootveld/telescope-zoxide" },
@@ -61,9 +61,65 @@ require("lazy").setup({
             },
         }
     },
-    { "jose-elias-alvarez/null-ls.nvim",     event = "VeryLazy" },
     { "lukas-reineke/indent-blankline.nvim", event = "VeryLazy" },
-    { "nvim-lualine/lualine.nvim",           event = "VeryLazy" },
+    -- session
+    {
+        "rmagatti/auto-session",
+        opts = {
+            log_level = "error",
+            auto_session_suppress_dirs = { "~/", "~/projects", "~/downloads", "/" },
+        },
+        config = function(_, opts)
+            require("auto-session").setup(opts)
+        end
+    },
+    {
+        "nvim-lualine/lualine.nvim",
+        event = "VeryLazy",
+        config = function(_, opts)
+            opts = {
+                options = {
+                    icons_enabled = true,
+                    theme = 'auto',
+                    component_separators = { left = '', right = '' },
+                    section_separators = { left = '', right = '' },
+                    disabled_filetypes = {
+                        statusline = {},
+                        winbar = {},
+                    },
+                    ignore_focus = {},
+                    always_divide_middle = true,
+                    globalstatus = false,
+                    refresh = {
+                        statusline = 1000,
+                        tabline = 1000,
+                        winbar = 1000,
+                    }
+                },
+                sections = {
+                    lualine_a = { 'mode' },
+                    lualine_b = { 'branch', 'diagnostics' },
+                    lualine_c = { 'buffers' },
+                    lualine_x = { 'fileformat', 'filetype' },
+                    lualine_y = { 'progress' },
+                    lualine_z = { 'location' }
+                },
+                inactive_sections = {
+                    lualine_a = {},
+                    lualine_b = { 'diff' },
+                    lualine_c = { 'filename' },
+                    lualine_x = { 'location', 'encoding' },
+                    lualine_y = {},
+                    lualine_z = {}
+                },
+                tabline = {},
+                winbar = {},
+                inactive_winbar = {},
+                extensions = {}
+            }
+            require('lualine').setup(opts)
+        end
+    },
     -- auto pairs
     {
         "echasnovski/mini.pairs",
@@ -72,7 +128,16 @@ require("lazy").setup({
             require("mini.pairs").setup(opts)
         end,
     },
-    --{'akinsho/bufferline.nvim', version = "v3.*", dependencies = 'nvim-tree/nvim-web-devicons'}
+    --
+    {
+        'akinsho/bufferline.nvim',
+        version = "v4.*",
+        enabled = false,
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        config = function(_, _)
+            require("bufferline").setup()
+        end
+    },
     -- surround
     {
         "echasnovski/mini.surround",
@@ -118,5 +183,5 @@ require("lazy").setup({
             require('leap').add_default_mappings()
         end
     },
-    { "mg979/vim-visual-multi", event = "VeryLazy" }
+    { "mg979/vim-visual-multi",              event = "VeryLazy" }
 })
