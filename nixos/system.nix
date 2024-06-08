@@ -37,6 +37,8 @@
 
   # docker
   virtualisation.docker.enable = true;
+  # Waydroid
+  virtualisation.waydroid.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
