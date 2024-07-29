@@ -12,6 +12,7 @@
   
   # linux kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.initrd.kernelModules=["amdgpu"];
 
   # enable non-free packages
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -32,6 +33,11 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 3000 8080 ];
+  };
+
   # Set your time zone.
   time.timeZone = "Australia/Melbourne";
 
@@ -39,6 +45,17 @@
   virtualisation.docker.enable = true;
   # Waydroid
   virtualisation.waydroid.enable = true;
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      vaapiVdpau
+      libvdpau-va-gl
+      libva-utils
+    ];
+  };
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

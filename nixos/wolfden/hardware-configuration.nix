@@ -32,6 +32,10 @@
     { device = "/dev/disk/by-uuid/b4fc44ea-9c7b-4425-a424-44fd7f6abd13";
       fsType = "ext4";
     };
+  fileSystems."/home/shidil/Media" =
+    { device = "/dev/disk/by-uuid/b7279d5a-7dfd-44f6-abe6-fe9870c3d8f6";
+      fsType = "ext4";
+    };
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/3270de93-bb23-4bf3-a453-75a541a3b838"; }
