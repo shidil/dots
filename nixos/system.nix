@@ -12,7 +12,6 @@
   
   # linux kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.initrd.kernelModules=["amdgpu"];
 
   # enable non-free packages
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
@@ -28,16 +27,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "wolfden"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [ 3000 8080 ];
-  };
-
   # Set your time zone.
   time.timeZone = "Australia/Melbourne";
 
@@ -45,21 +34,6 @@
   virtualisation.docker.enable = true;
   # Waydroid
   virtualisation.waydroid.enable = true;
-
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      vaapiVdpau
-      libvdpau-va-gl
-      libva-utils
-    ];
-  };
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -72,9 +46,6 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
-  
-
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -83,7 +54,7 @@
   # services.printing.enable = true;
 
   # Sway & Wayland
-   # enable sway window manager
+  # enable sway window manager
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
@@ -98,6 +69,11 @@
     enable = true;
     alsa.enable = true;
     pulse.enable = true;
+  };
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish.enable = true;
   };
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
@@ -119,7 +95,6 @@
 
   # Gaming
   programs.steam.enable = true;
-  
 
   # direnv
   programs.direnv = {
@@ -193,11 +168,28 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Pick only one of the below networking options.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 3000 8080 7000 7001 7100];
+    allowedUDPPortRanges = [
+      { from = 5353; to = 5353; }
+      { from = 6000; to = 6001; }
+      { from = 7011; to = 7011; }
+    ];
+  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
@@ -221,6 +213,5 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "23.11"; # Did you read the comment?
-
 }
 
