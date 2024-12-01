@@ -75,6 +75,7 @@
     nssmdns4 = true;
     publish.enable = true;
   };
+  services.tailscale.enable = false;
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
   # (org.freedesktop.portal.Desktop) and object path
@@ -183,7 +184,7 @@
   # networking.firewall.enable = false;
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 3000 8080 7000 7001 7100];
+    allowedTCPPorts = [ 3000 8080 7000 7001 7100 11434 11435];
     allowedUDPPortRanges = [
       { from = 5353; to = 5353; }
       { from = 6000; to = 6001; }
