@@ -37,3 +37,4 @@ vim.keymap.set("v", "<S-Tab>", "<<<Esc>gv")
 
 -- Buffers
 vim.keymap.set("n", "<leader>bc", ":bd ")
+vim.keymap.set("t", "<esc><esc>", "<C-\\><C-N>")

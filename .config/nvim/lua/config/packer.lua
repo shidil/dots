@@ -183,5 +183,6 @@ require("lazy").setup({
             require('leap').add_default_mappings()
         end
     },
-    { "mg979/vim-visual-multi",              event = "VeryLazy" }
+    { "mg979/vim-visual-multi",              event = "VeryLazy" },
+    { 'TabbyML/vim-tabby' }
 })

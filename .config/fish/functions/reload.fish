@@ -3,4 +3,5 @@ function reload --description "Reload fish shell"
     set -e __initialized
   end
   source ~/.config/fish/config.fish
+  direnv reload
 end

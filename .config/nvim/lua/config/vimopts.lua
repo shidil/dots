@@ -23,3 +23,10 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.colorcolumn = "100"
 
+vim.opt.shell = "fish";
+
+vim.filetype.add({
+    pattern = {
+        ['.*/*Tiltfile'] = 'starlark',
+    },
+})

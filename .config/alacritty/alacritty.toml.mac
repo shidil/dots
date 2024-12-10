@@ -1,0 +1,44 @@
+import = ["/Users/shidil/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+
+[font]
+size = 15
+
+[font.bold]
+family = "FiraCode Nerd Font"
+style = "Retina"
+
+[font.bold_italic]
+family = "FiraCode Nerd Font"
+style = "Retina"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[shell]
+program = "/bin/bash"
+args = ["-c", "fish"]
+
+[font.italic]
+family = "FiraCode Nerd Font"
+style = "Retina"
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Retina"
+
+[font.offset]
+x = 0
+y = 0
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[window]
+decorations = "none"
+dynamic_padding = true
+
+[window.padding]
+x = 8
+y = 8
