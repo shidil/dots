@@ -18,6 +18,7 @@
     "steam"
     "steam-original"
     "steam-run"
+    "steam-unwrapped"
   ];
 
   # Enable flakes feature, and nix-command tool
@@ -86,10 +87,6 @@
 
   programs.thunar.enable = true;
 
-  # Enable sound.
-  sound.enable = true;
-  #hardware.pulseaudio.enable = true;
-
   # Enable bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
@@ -156,7 +153,7 @@
     libpng
     zlib
     nss
-    libusb
+    libusb1
     nspr
     expat
     libdrm
