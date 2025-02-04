@@ -4,5 +4,10 @@
 .config/go/telemetry
 .config/pavucontrol.ini
 .config/pulse/
+.config/chromium/
+.config/Slack
+.config/Gimp
+.config/Google
+.config/Code*
 .local/share/fonts/.uuid
 result
