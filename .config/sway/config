@@ -1,4 +1,4 @@
-set $term alacritty
+set $term wezterm
 set $menu fuzzel
 set $launcher fuzzel
 
