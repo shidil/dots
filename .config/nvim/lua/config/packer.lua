@@ -23,8 +23,11 @@ require("lazy").setup({
         "catppuccin/nvim",
         name = "catppuccin",
         config = function(_, _)
-            vim.cmd(
-                'colorscheme catppuccin-mocha')
+            require("catppuccin").setup({
+                flavour = "mocha",
+                transparent_background = true,
+            })
+            vim.cmd('colorscheme catppuccin-mocha')
         end
     },
     { "nvim-tree/nvim-web-devicons" },
@@ -60,6 +63,21 @@ require("lazy").setup({
                 end
             },
         }
+    },
+    {
+        "nvim-tree/nvim-tree.lua",
+        version = "*",
+        lazy = false,
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("nvim-tree").setup {}
+            local api = require "nvim-tree.api"
+            vim.keymap.set('n', '<leader>pt', function()
+                api.tree.toggle()
+            end)
+        end,
     },
     { "lukas-reineke/indent-blankline.nvim", event = "VeryLazy" },
     -- session
