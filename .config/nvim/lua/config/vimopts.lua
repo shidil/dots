@@ -1,5 +1,6 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
+vim.opt.cursorline = true
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -19,8 +20,6 @@ vim.opt.incsearch = true
 
 vim.opt.signcolumn = "yes"
 
----vim.opt.updatetime = 50
-
 vim.opt.colorcolumn = "100"
 
 vim.opt.shell = "fish";
@@ -30,3 +29,7 @@ vim.filetype.add({
         ['.*/*Tiltfile'] = 'starlark',
     },
 })
+
+vim.opt.spell = true
+vim.opt.spelllang = "en_us"
+vim.opt.spellsuggest = "best"
