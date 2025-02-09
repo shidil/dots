@@ -33,13 +33,12 @@ require("lazy").setup({
     { "nvim-treesitter/nvim-treesitter",            name = "treesitter", build = ":TSUpdate" },
     { "nvim-treesitter/nvim-treesitter-textobjects" },
     -- { "nvim-treesitter/playground" },
-    { "mbbill/undotree" },
+    -- { "mbbill/undotree" },
     {
         'williamboman/mason.nvim',
         lazy = false,
         opts = {},
     },
-
     -- Autocompletion
     {
         'hrsh7th/nvim-cmp',
@@ -259,6 +258,7 @@ require("lazy").setup({
     -- session
     {
         "rmagatti/auto-session",
+        enabled = false,
         opts = {
             log_level = "error",
             auto_session_suppress_dirs = { "~/", "~/projects", "~/downloads", "/" },
@@ -324,6 +324,7 @@ require("lazy").setup({
     },
     -- surround
     {
+        enabled = false,
         "echasnovski/mini.surround",
         event = "VeryLazy",
         keys = function(_, keys)
@@ -362,20 +363,23 @@ require("lazy").setup({
     },
     {
         "ggandor/leap.nvim",
+        enabled = false,
         event = "VeryLazy",
         config = function(_, opts)
             require('leap').add_default_mappings()
         end
     },
-    { "mg979/vim-visual-multi", event = "VeryLazy" },
+    {
+        "mg979/vim-visual-multi",
+        enabled = false,
+        event = "VeryLazy",
+    },
     {
         'romgrk/barbar.nvim',
         init = function() vim.g.barbar_auto_setup = false end,
         opts = {
-            -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-            -- animation = true,
-            -- insert_at_start = true,
-            -- …etc.
+            animation = false,
+            insert_at_start = true,
         },
         version = '^1.9.1', -- optional: only update when a new 1.x version is released
     },
