@@ -52,7 +52,7 @@ alias ed "find_vi"
 
 alias cd "z"
 alias less "bat"
-alias k9s "XDG_CONFIG_HOME=~/.config ~/go/bin/k9s"
+alias k9s "XDG_CONFIG_HOME=~/.config $(which k9s)"
 
 set -x AWS_PROFILE default
 set -x AWS_REGION ap-southeast-2

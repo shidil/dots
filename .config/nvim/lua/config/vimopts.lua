@@ -25,11 +25,15 @@ vim.opt.colorcolumn = "100"
 vim.opt.shell = "fish";
 
 vim.filetype.add({
-    pattern = {
-        ['.*/*Tiltfile'] = 'starlark',
-    },
+	pattern = {
+		['.*/*Tiltfile'] = 'starlark',
+	},
 })
 
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
 vim.opt.spellsuggest = "best"
+
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1

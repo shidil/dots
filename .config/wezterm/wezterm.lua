@@ -10,11 +10,11 @@ config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 
 function scheme_for_appearance(appearance)
-    if appearance:find "Dark" then
-        return "Catppuccin Mocha"
-    else
-        return "Catppuccin Mocha"
-    end
+	if appearance:find "Dark" then
+		return "Catppuccin Mocha"
+	else
+		return "Catppuccin Mocha"
+	end
 end
 
 config.color_scheme = scheme_for_appearance(wezterm.gui.get_appearance())
