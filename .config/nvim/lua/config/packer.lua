@@ -45,13 +45,12 @@ require("lazy").setup({
         event = 'InsertEnter',
         config = function()
             local cmp = require('cmp')
-            require('luasnip.loaders.from_vscode').lazy_load()
-
             cmp.setup({
                 sources = {
+                    { name = 'path' },
                     { name = 'nvim_lsp' },
-                    { name = 'luasnip' },
-                    { name = 'buffer' },
+                    { name = 'luasnip', keyword_length = 2 },
+                    { name = 'buffer',  keyword_length = 3 },
                 },
                 mapping = cmp.mapping.preset.insert({
                     -- scroll up and down the documentation window
@@ -96,9 +95,18 @@ require("lazy").setup({
         dependencies = {
             {
                 "hrsh7th/cmp-buffer",
-                "L3MON4D3/LuaSnip",
-                dependencies = { "rafamadriz/friendly-snippets" },
+                "hrsh7th/cmp-path",
+                "saadparwaiz1/cmp_luasnip",
             }
+        }
+    },
+    {
+        "L3MON4D3/LuaSnip",
+        config = function()
+            require('luasnip.loaders.from_vscode').lazy_load()
+        end,
+        dependencies = {
+            "rafamadriz/friendly-snippets"
         }
     },
     -- LSP
