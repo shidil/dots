@@ -51,7 +51,7 @@
     wf-recorder
 
     # shell
-    alacritty # gpu accelerated terminal
+    wezterm # gpu accelerated terminal
     fish # shell for the cultured
     zoxide # convenient cd alternative
     fd # fast find alternative
@@ -89,6 +89,7 @@
 
     # networking tools
     dnsutils  # `dig` + `nslookup`
+    bluetui
 
     # productivity
     glow # markdown previewer in terminal

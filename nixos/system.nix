@@ -19,6 +19,8 @@
     "steam-original"
     "steam-run"
     "steam-unwrapped"
+    "slack"
+    "google-chrome"
   ];
 
   # Enable flakes feature, and nix-command tool
@@ -123,6 +125,8 @@
     xdg-utils # open
     neofetch # view system information in a nutshell
     wl-clipboard # wl-copy wl-paste clipboard access, and manipulaiton
+    slack
+    google-chrome
   ];
   environment.variables.EDITOR = "nvim";
   environment.shellAliases = {
