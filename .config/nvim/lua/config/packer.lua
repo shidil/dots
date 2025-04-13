@@ -391,4 +391,11 @@ require("lazy").setup({
         },
         version = '^1.9.1', -- optional: only update when a new 1.x version is released
     },
+    {
+        'lewis6991/gitsigns.nvim',
+        opts = {
+            current_line_blame = true,
+            signcolumn = true,
+        }
+    },
 })
