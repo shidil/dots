@@ -11,7 +11,7 @@ set XDG_CONFIG_HOME "$HOME/.config/"
 # https://sidneyliebrand.medium.com/how-fzf-and-ripgrep-improved-my-workflow-61c7ca212861
 set -gx FZF_DEFAULT_COMMAND  'rg --files --no-ignore-vcs --hidden'
 
-# https://github.com/catppuccin/fzf#usage 
+# https://github.com/catppuccin/fzf#usage
 set -Ux FZF_DEFAULT_OPTS "\
 --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
@@ -43,7 +43,7 @@ alias find "fd"
 # https://github.com/BurntSushi/ripgrep
 alias grep "rg"
 alias ack "rg"
-# 
+#
 alias dir "eza --color always --tree --level=1 --icons --git --group-directories-first"
 alias vi "nvim"
 alias vim "nvim"
@@ -52,7 +52,6 @@ alias ed "find_vi"
 
 alias cd "z"
 alias less "bat"
-alias k9s "XDG_CONFIG_HOME=~/.config $(which k9s)"
 
 set -x AWS_PROFILE default
 set -x AWS_REGION ap-southeast-2
