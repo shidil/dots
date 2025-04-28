@@ -27,7 +27,11 @@ return {
           lualine_a = { 'mode' },
           lualine_b = { 'branch', 'diagnostics' },
           lualine_c = { 'buffers' },
-          lualine_x = { 'fileformat', 'filetype' },
+          lualine_x = {
+            'fileformat',
+            'filetype',
+            { require('mcphub.extensions.lualine') },
+          },
           lualine_y = { 'progress' },
           lualine_z = { 'location' }
         },
@@ -42,7 +46,7 @@ return {
         tabline = {},
         winbar = {},
         inactive_winbar = {},
-        extensions = {}
+        extensions = {},
       }
       require('lualine').setup(opts)
     end

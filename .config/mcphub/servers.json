@@ -1,0 +1,37 @@
+{
+  "mcpServers": {
+    "sequentialthinking": {
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "mcp/sequentialthinking"
+      ],
+      "command": "docker"
+    },
+    "fetch": {
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "mcp/fetch"
+      ],
+      "command": "docker"
+    },
+    "git": {
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "--mount",
+        "type=bind,src=/home/shidil/projects,dst=/home/shidil/projects",
+        "mcp/git"
+      ],
+      "command": "docker",
+      "disabled": false
+    }
+  },
+  "nativeMCPServers": [
+    
+  ]
+}

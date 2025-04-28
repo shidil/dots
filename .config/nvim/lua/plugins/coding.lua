@@ -111,6 +111,29 @@ return {
         embed_model = "nomic-embed-text",    -- The embedding model to use for RAG service
         endpoint = "http://localhost:11434", -- The API endpoint for RAG service
       },
+      -- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
+      system_prompt = function()
+        local hub = require("mcphub").get_hub_instance()
+        return hub:get_active_servers_prompt()
+      end,
+      -- The custom_tools type supports both a list and a function that returns a list. Using a function here prevents requiring mcphub before it's loaded
+      custom_tools = function()
+        return {
+          require("mcphub.extensions.avante").mcp_tool(),
+        }
+      end,
+      disabled_tools = {
+        "list_files",
+        "search_files",
+        "read_file",
+        "create_file",
+        "rename_file",
+        "delete_file",
+        "create_dir",
+        "rename_dir",
+        "delete_dir",
+        "bash",
+      },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
@@ -149,4 +172,25 @@ return {
       },
     },
   },
+  {
+    "ravitemer/mcphub.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
+    },
+    -- uncomment the following line to load hub lazily
+    --cmd = "MCPHub",  -- lazy load
+    -- build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
+    -- uncomment this if you don't want mcp-hub to be available globally or can't use -g
+    build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
+    opts = {
+      -- Advanced configuration
+      use_bundled_binary = true, -- Set to true if you want to use the bundled binary instead of the global one
+      -- You can also set this to a custom path if you have a custom mcp-hub binary
+      -- binary_path = "/path/to/mcp-hub",
+      -- Set this to false if you don't want to use the bundled binary
+      -- This will use the global mcp-hub binary instead
+      -- If you set this to false, make sure you have mcp-hub installed globally
+      -- and available in your PATH
+    },
+  }
 }
