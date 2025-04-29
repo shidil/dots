@@ -2,6 +2,9 @@ vim.lsp.enable('luals')
 vim.lsp.enable('gopls')
 vim.lsp.enable('tsserver')
 vim.lsp.enable('jsonls')
+vim.lsp.enable('html')
+vim.lsp.enable('cssls')
+vim.lsp.enable('starlark-rust')
 
 -- add somewhere in your config that runs on startup:
 vim.diagnostic.config({
