@@ -1,5 +1,7 @@
 vim.lsp.enable('luals')
 vim.lsp.enable('gopls')
+vim.lsp.enable('tsserver')
+vim.lsp.enable('jsonls')
 
 -- add somewhere in your config that runs on startup:
 vim.diagnostic.config({
