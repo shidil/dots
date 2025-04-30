@@ -1,24 +1,36 @@
 {
+  "nativeMCPServers": [
+    
+  ],
   "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ]
+    },
     "sequentialthinking": {
+      "command": "docker",
       "args": [
         "run",
         "--rm",
         "-i",
         "mcp/sequentialthinking"
-      ],
-      "command": "docker"
+      ]
     },
     "fetch": {
+      "command": "docker",
       "args": [
         "run",
         "-i",
         "--rm",
         "mcp/fetch"
-      ],
-      "command": "docker"
+      ]
     },
     "git": {
+      "command": "docker",
+      "disabled": false,
       "args": [
         "run",
         "--rm",
@@ -26,12 +38,7 @@
         "--mount",
         "type=bind,src=/home/shidil/projects,dst=/home/shidil/projects",
         "mcp/git"
-      ],
-      "command": "docker",
-      "disabled": false
+      ]
     }
-  },
-  "nativeMCPServers": [
-    
-  ]
+  }
 }
