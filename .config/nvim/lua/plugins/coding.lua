@@ -47,7 +47,7 @@ return {
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
-    enabled = true,
+    enabled = false,
     version = false, -- Never set this value to "*"! Never!
     opts = {
       -- add any opts here
@@ -219,24 +219,112 @@ return {
     },
   },
   {
-    "ravitemer/mcphub.nvim",
+    'MeanderingProgrammer/render-markdown.nvim',
+    opts = {},
+    ft = { "markdown", "Avante", "codecompanion" },
+  },
+  {
+    "olimorris/codecompanion.nvim",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      {
+        "ravitemer/mcphub.nvim",
+        cmd = "MCPHub",              -- lazy load
+        build = "bundled_build.lua", -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
+        opts = {
+          use_bundled_binary = true, -- Set to true if you want to use the bundled binary instead of the global one
+        },
+      },
+      -- TODO: add Davidyz/VectorCode
+      "MeanderingProgrammer/render-markdown.nvim",
     },
-    -- uncomment the following line to load hub lazily
-    --cmd = "MCPHub",  -- lazy load
-    -- build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
-    -- uncomment this if you don't want mcp-hub to be available globally or can't use -g
-    build = "bundled_build.lua", -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
     opts = {
-      -- Advanced configuration
-      use_bundled_binary = true, -- Set to true if you want to use the bundled binary instead of the global one
-      -- You can also set this to a custom path if you have a custom mcp-hub binary
-      -- binary_path = "/path/to/mcp-hub",
-      -- Set this to false if you don't want to use the bundled binary
-      -- This will use the global mcp-hub binary instead
-      -- If you set this to false, make sure you have mcp-hub installed globally
-      -- and available in your PATH
+      extensions = {
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
+          }
+        },
+        --vectorcode = {
+        --  opts = {
+        --    add_tool = true,
+        --  },
+        --},
+      },
+      display = {
+        action_palette = {
+          provider = "default"
+        }
+      },
+      strategies = {
+        chat = {
+          keymaps = {
+            send = {
+              callback = function(chat)
+                vim.cmd("stopinsert")
+                chat:submit()
+              end,
+              index = 1,
+              description = "Send",
+            },
+          }
+        }
+
+      },
+      adapters = {
+        copilot = function()
+          return require("codecompanion.adapters").extend("copilot", {
+            schema = {
+              model = {
+                default = "gemini-2.5-pro",
+              },
+            },
+          })
+        end,
+        ollama = function()
+          return require("codecompanion.adapters").extend("ollama", {
+            schema = {
+              model = {
+                default = "llama3.1:latest",
+              },
+              num_ctx = {
+                default = 20000,
+              },
+            },
+          })
+        end,
+      }
     },
-  }
+    -- https://codecompanion.olimorris.dev/getting-started.html#suggested-plugin-workflow
+    keys = {
+      {
+        "<C-a>",
+        "<cmd>CodeCompanionActions<cr>",
+        desc = "Code companion actions",
+        mode = { "n", "v" },
+      },
+      {
+        "<LocalLeader>a",
+        "<cmd>CodeCompanionChat Toggle<cr>",
+        desc = "Code companion chat toggle",
+        mode = { "n", "v" }
+      },
+      {
+        "ga",
+        "<cmd>CodeCompanionChat Add<cr>",
+        desc = "Code companion add to chat",
+        mode = { "v" }
+      },
+    },
+    config = function(_, opts)
+      local spinner = require("plugins.codecompanion.spinner")
+      spinner:init()
+      require("codecompanion").setup(opts)
+      vim.cmd([[cab cc CodeCompanion]])
+    end
+  },
 }
