@@ -52,21 +52,12 @@ return {
     end
   },
   {
-    "saghen/blink.compat",
-    lazy = true,
-    opts = {},
-    config = function()
-      -- monkeypatch cmp.ConfirmBehavior for Avante
-      require("cmp").ConfirmBehavior = {
-        Insert = "insert",
-        Replace = "replace",
-      }
-    end,
-  },
-  {
     'saghen/blink.cmp',
     -- optional: provides snippets for the snippet source
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    dependencies = {
+      'rafamadriz/friendly-snippets',
+      'Kaiser-Yang/blink-cmp-avante',
+    },
 
     -- use a release tag to download pre-built binaries
     version = '1.*',
@@ -74,9 +65,6 @@ return {
     -- build = 'cargo build --release',
     -- If you use nix, you can build from source using latest nightly rust with:
     build = 'nix run .#build-plugin',
-
-    ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
     opts = {
       -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
       -- 'super-tab' for mappings similar to vscode (tab to accept)
@@ -115,7 +103,7 @@ return {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', "avante_commands", "avante_mentions", "avante_files" },
+        default = { 'avante', 'lsp', 'path', 'snippets', 'buffer' },
         providers = {
           cmdline = {
             min_keyword_length = function(ctx)
@@ -124,23 +112,9 @@ return {
               return 0
             end
           },
-          -- LSP is typically ~60
-          avante_commands = {
-            name = "avante_commands",
-            module = "blink.compat.source",
-            score_offset = 90, -- show at a higher priority than lsp
-            opts = {},
-          },
-          avante_files = {
-            name = "avante_files",
-            module = "blink.compat.source",
-            score_offset = 100, -- ~40 points higher than LSP ()
-            opts = {},
-          },
-          avante_mentions = {
-            name = "avante_mentions",
-            module = "blink.compat.source",
-            score_offset = 1000, -- show at a higher priority than lsp
+          avante = {
+            name = "Avante",
+            module = "blink-cmp-avante",
             opts = {},
           },
         }
