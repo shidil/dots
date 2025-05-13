@@ -60,25 +60,37 @@ return {
         max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
         --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
       },
-      provider = "openrouter",
+      provider = "copilot",
+      repo_map = {
+        ignore_patterns = { "%.git", "%.worktree", "__pycache__", "node_modules" },
+      },
+      hints = {
+        enabled = true,
+      },
       copilot = {
-        model = "claude-3.7-sonnet",
+        model = "gpt-4.1",
         endpoint = "https://api.githubcopilot.com",
         allow_insecure = false,
         timeout = 10 * 60 * 1000,
         temperature = 0,
-        max_completion_tokens = 1000000,
         reasoning_effort = "high",
+        max_tokens = 100000
       },
-      cursor_applying_provider = 'ollama', -- In this example, use Groq for applying, but you can also use any provider you want.
+      mode = "legacy",
+      cursor_applying_provider = 'groq', -- In this example, use Groq for applying, but you can also use any provider you want.
       auto_suggestions_provider = 'copilotsuggest',
       behaviour = {
         auto_suggestions = false,               -- enable auto-suggestions
         auto_suggestions_respect_ignore = true, -- respect ignore patterns
         enable_cursor_planning_mode = true,     -- enable cursor planning mode!
-        enable_claude_text_editor_tool_mode = true,
+        enable_claude_text_editor_tool_mode = false,
+        auto_apply_diff_after_generation = false,
+        jump_result_buffer_on_finish = false,
       },
       file_selector = {
+        provider = "snacks", -- The provider to use for file selection
+      },
+      selector = {
         provider = "snacks", -- The provider to use for file selection
       },
       vendors = {
@@ -120,6 +132,39 @@ return {
       custom_tools = function()
         return {
           require("mcphub.extensions.avante").mcp_tool(),
+          {
+            name = "run_go_tests",                                -- Unique name for the tool
+            description = "Run Go unit tests and return results", -- Description shown to AI
+            command = "go test -v ./...",                         -- Shell command to execute
+            param = {                                             -- Input parameters (optional)
+              type = "table",
+              fields = {
+                {
+                  name = "target",
+                  description = "Package or directory to test (e.g. './pkg/...' or './internal/pkg')",
+                  type = "string",
+                  optional = true,
+                },
+              },
+            },
+            returns = { -- Expected return values
+              {
+                name = "result",
+                description = "Result of the test run",
+                type = "string",
+              },
+              {
+                name = "error",
+                description = "Error message if the tests were not successful",
+                type = "string",
+                optional = true,
+              },
+            },
+            func = function(params, _, _) -- Custom function to execute
+              local target = params.target or "./..."
+              return vim.fn.system(string.format("go test -v %s", target))
+            end,
+          },
         }
       end,
       disabled_tools = {
@@ -133,6 +178,7 @@ return {
         "rename_dir",
         "delete_dir",
         "bash",
+        "python",
       },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
@@ -181,7 +227,7 @@ return {
     --cmd = "MCPHub",  -- lazy load
     -- build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
     -- uncomment this if you don't want mcp-hub to be available globally or can't use -g
-    build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
+    build = "bundled_build.lua", -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
     opts = {
       -- Advanced configuration
       use_bundled_binary = true, -- Set to true if you want to use the bundled binary instead of the global one
