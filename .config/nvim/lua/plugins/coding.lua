@@ -236,7 +236,13 @@ return {
           use_bundled_binary = true, -- Set to true if you want to use the bundled binary instead of the global one
         },
       },
-      -- TODO: add Davidyz/VectorCode
+      {
+        "Davidyz/VectorCode",
+        version = "*", -- optional, depending on whether you're on nightly or release
+        dependencies = { "nvim-lua/plenary.nvim" },
+        build = "uv tool upgrade vectorcode",
+        cmd = "VectorCode", -- if you're lazy-loading VectorCode
+      },
       "MeanderingProgrammer/render-markdown.nvim",
     },
     opts = {
@@ -249,11 +255,11 @@ return {
             show_result_in_chat = true,
           }
         },
-        --vectorcode = {
-        --  opts = {
-        --    add_tool = true,
-        --  },
-        --},
+        vectorcode = {
+          opts = {
+            add_tool = true,
+          },
+        },
       },
       display = {
         action_palette = {
