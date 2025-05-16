@@ -1,0 +1,31 @@
+{
+  "$schema": "https://rest.sh/schemas/apis.json",
+  "paytootest": {
+    "base": "https://sandbox.payrollapi.com.au/api/v1",
+    "spec_files": [
+      "/home/shidil/projects/payout/api/paytoo-openapi.yaml"
+    ],
+    "profiles": {
+      "default": {
+        "headers": {
+          "Authorization": "TOKEN"
+        }
+      }
+    },
+    "tls": {}
+  },
+  "paytooprod": {
+    "base": "https://api.payrollapi.com.au/api/v1",
+    "spec_files": [
+      "/home/shidil/projects/payout/api/paytoo-openapi.yaml"
+    ],
+    "profiles": {
+      "default": {
+        "headers": {
+          "Authorization": "TOKEN"
+        }
+      }
+    },
+    "tls": {}
+  }
+}
