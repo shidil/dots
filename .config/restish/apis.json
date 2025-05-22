@@ -7,8 +7,12 @@
     ],
     "profiles": {
       "default": {
-        "headers": {
-          "Authorization": "TOKEN"
+        "auth": {
+          "name": "external-tool",
+          "params": {
+            "commandline": "jq \"{headers: {authorization: [\\\"$(pass show PAYTOO_API_KEY_TEST)\\\"]}}\"",
+            "omitbody": "true"
+          }
         }
       }
     },
@@ -21,8 +25,12 @@
     ],
     "profiles": {
       "default": {
-        "headers": {
-          "Authorization": "TOKEN"
+        "auth": {
+          "name": "external-tool",
+          "params": {
+            "commandline": "jq \"{headers: {authorization: [\\\"$(pass show PAYTOO_API_KEY_PROD)\\\"]}}\"",
+            "omitbody": "true"
+          }
         }
       }
     },
