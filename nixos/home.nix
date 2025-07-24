@@ -35,11 +35,7 @@
     # essentials
     firefox
     neovim
-    tree
     jq
-    gcc13
-    gnumake
-    cmake
 
     # window manager customization
     fuzzel
@@ -82,22 +78,25 @@
     unzip
 
     # system tools
-    pciutils # lspci
-    usbutils # lsusb
     htop  # replacement of top
     iftop # network monitoring
+    dust # disk usage analyzer
 
     # networking tools
-    dnsutils  # `dig` + `nslookup`
     bluetui
 
     # productivity
     glow # markdown previewer in terminal
+    obsidian
 
     # system call monitoring
     strace # system call monitoring
     ltrace # library call monitoring
-    lsof # list open files
+
+    # Non free software
+    slack
+    google-chrome
+    ungoogled-chromium
   ];
 
   # basic configuration of git, please change to your own

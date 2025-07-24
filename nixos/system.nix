@@ -19,8 +19,6 @@
     "steam-original"
     "steam-run"
     "steam-unwrapped"
-    "slack"
-    "google-chrome"
   ];
 
   # Enable flakes feature, and nix-command tool
@@ -35,6 +33,11 @@
 
   # docker
   virtualisation.docker.enable = true;
+  virtualisation.docker.daemon.settings = {
+    features = {
+        "containerd-snapshotter" = true;
+    };
+  };
   # Waydroid
   virtualisation.waydroid.enable = true;
 
@@ -112,7 +115,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.shidil = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "docker" "RENDER" "VIDEO" ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
@@ -120,13 +123,19 @@
   environment.systemPackages = with pkgs; [
     vim
     wget 
+    tree
+    gcc13
+    gnumake
+    cmake
     git # many tools, and flakes depend on git.
     psmisc # killall, fuser
     xdg-utils # open
+    pciutils # lspci
+    usbutils # lsusb
+    dnsutils # dig, nslookup
+    lsof # list open files
     neofetch # view system information in a nutshell
     wl-clipboard # wl-copy wl-paste clipboard access, and manipulaiton
-    slack
-    google-chrome
   ];
   environment.variables.EDITOR = "nvim";
   environment.shellAliases = {
@@ -185,7 +194,7 @@
   # networking.firewall.enable = false;
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 3000 8080 7000 7001 7100 11434 11435];
+    allowedTCPPorts = [ 3000 8080 7000 7001 7100 11434 11435 5173];
     allowedUDPPortRanges = [
       { from = 5353; to = 5353; }
       { from = 6000; to = 6001; }
