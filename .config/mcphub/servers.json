@@ -1,20 +1,13 @@
 {
-  "nativeMCPServers": [],
+  "nativeMCPServers": [
+    
+  ],
   "mcpServers": {
     "context7": {
       "command": "npx",
       "args": [
         "-y",
         "@upstash/context7-mcp@latest"
-      ]
-    },
-    "sequentialthinking": {
-      "command": "docker",
-      "args": [
-        "run",
-        "--rm",
-        "-i",
-        "mcp/sequentialthinking"
       ]
     },
     "fetch": {
@@ -26,9 +19,14 @@
         "mcp/fetch"
       ]
     },
+    "kubernetes": {
+      "command": "npx",
+      "args": [
+        "mcp-server-kubernetes"
+      ]
+    },
     "git": {
       "command": "docker",
-      "disabled": false,
       "args": [
         "run",
         "--rm",
@@ -36,10 +34,28 @@
         "--mount",
         "type=bind,src=/home/shidil/projects,dst=/home/shidil/projects",
         "mcp/git"
+      ],
+      "disabled": false
+    },
+    "sequentialthinking": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "mcp/sequentialthinking"
       ]
     },
+    "mui-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@mui/mcp@latest"
+      ],
+      "type": "stdio"
+    },
     "github": {
-      "disabled": false,
+      "command": "docker",
       "args": [
         "run",
         "-i",
@@ -48,16 +64,10 @@
         "GITHUB_PERSONAL_ACCESS_TOKEN",
         "ghcr.io/github/github-mcp-server"
       ],
-      "command": "docker",
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": ""
-      }
-    },
-    "kubernetes": {
-      "command": "npx",
-      "args": [
-        "mcp-server-kubernetes"
-      ]
+      },
+      "disabled": false
     }
   }
 }
