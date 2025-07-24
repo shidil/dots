@@ -1,8 +1,12 @@
 {
-  "embedding_function": "OllamaEmbeddingFunction",
   "embedding_params": {
-    "url": "http://127.0.0.1:11434/api/embeddings",
-    "model_name": "nomic-embed-text"
+    "backend": "torch",
+    "device": "cuda:0",
+    "local_files_only": true,
+    "cache_folder": "/home/shidil/.local/share/vectorcode/cache"
   },
-  "reranker": "NaiveReranker"
+  "db_url": "http://localhost:8000",
+  "db_settings": {
+    "anonymized_telemetry": false
+  }
 }
