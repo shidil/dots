@@ -10,13 +10,14 @@ return {
         },
         suggestion = {
           enabled = true,
-          auto_trigger = true,
+          auto_trigger = false,
           debounce = 100,
+          trigger_on_accept = false,
           keymap = {
             accept = "<Tab>",
             accept_word = false,
             accept_line = false,
-            next = false,
+            next = "<C-l>",
             prev = false,
             dismiss = false,
           },
