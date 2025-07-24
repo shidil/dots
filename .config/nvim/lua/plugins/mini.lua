@@ -2,6 +2,7 @@ return {
   { "echasnovski/mini.pairs",     config = true },
   { "echasnovski/mini.comment",   config = true },
   { "echasnovski/mini.splitjoin", config = true },
+  { "echasnovski/mini.diff",      config = true },
   {
     "echasnovski/mini.move",
     config = true,

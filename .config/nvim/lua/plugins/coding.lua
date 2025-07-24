@@ -212,9 +212,26 @@ return {
         -- Make sure to set this up properly if you have lazy=true
         'MeanderingProgrammer/render-markdown.nvim',
         opts = {
-          file_types = { "markdown", "Avante" },
+          overrides = {
+            filetype = {
+              codecompanion = {
+                html = {
+                  tag = {
+                    buf = { icon = " ", highlight = "CodeCompanionChatIcon" },
+                    file = { icon = " ", highlight = "CodeCompanionChatIcon" },
+                    group = { icon = " ", highlight = "CodeCompanionChatIcon" },
+                    help = { icon = "󰘥 ", highlight = "CodeCompanionChatIcon" },
+                    image = { icon = " ", highlight = "CodeCompanionChatIcon" },
+                    symbols = { icon = " ", highlight = "CodeCompanionChatIcon" },
+                    tool = { icon = "󰯠 ", highlight = "CodeCompanionChatIcon" },
+                    url = { icon = "󰌹 ", highlight = "CodeCompanionChatIcon" },
+                  },
+                },
+              },
+            },
+          },
         },
-        ft = { "markdown", "Avante" },
+        ft = { "markdown", "codecompanion" },
       },
     },
   },
@@ -243,6 +260,9 @@ return {
         build = "uv tool upgrade vectorcode",
         cmd = "VectorCode", -- if you're lazy-loading VectorCode
       },
+      {
+        "ravitemer/codecompanion-history.nvim",
+      },
       "MeanderingProgrammer/render-markdown.nvim",
     },
     opts = {
@@ -255,9 +275,40 @@ return {
             show_result_in_chat = true,
           }
         },
-        vectorcode = {
+        history = {
+          enabled = true,
           opts = {
-            add_tool = true,
+            memory = { index_on_startup = true },
+          },
+        },
+        vectorcode = {
+          enabled = true,
+          opts = {
+            tool_group = { extras = { "file_search" }, collapse = true },
+            tool_opts = {
+              ["*"] = { use_lsp = true },
+              ls = {},
+              vectorise = {},
+              query = {
+                default_num = { document = 15, chunks = 100 },
+                chunk_mode = true,
+                summarise = {
+                  enabled = true,
+                  system_prompt = function(s)
+                    return s
+                  end,
+                  adapter = function()
+                    return require("codecompanion.adapters").extend("copilot", {
+                      name = "Summariser",
+                      schema = {
+                        model = { default = "gemini-2.0-flash" },
+                      },
+                      opts = { stream = false },
+                    })
+                  end,
+                },
+              },
+            },
           },
         },
       },
@@ -277,16 +328,30 @@ return {
               index = 1,
               description = "Send",
             },
+          },
+          tools = {
+            opts = {
+              default_tools = { "vectorcode_toolbox", "read_file" },
+              auto_submit_errors = true,  -- Send any errors to the LLM automatically?
+              auto_submit_success = true, -- Send any successful output to the LLM automatically?
+            },
+          },
+          opts = {
+            prompt_decorator = function(message, adapter, context)
+              return string.format([[<prompt>%s</prompt>]], message)
+            end,
           }
+        },
+        inline = {
+          adapter = "copilot",
         }
-
       },
       adapters = {
         copilot = function()
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               model = {
-                default = "gemini-2.5-pro",
+                default = "gpt-4.1",
               },
             },
           })
@@ -308,7 +373,7 @@ return {
     -- https://codecompanion.olimorris.dev/getting-started.html#suggested-plugin-workflow
     keys = {
       {
-        "<C-a>",
+        "<LocalLeader>A",
         "<cmd>CodeCompanionActions<cr>",
         desc = "Code companion actions",
         mode = { "n", "v" },
@@ -324,6 +389,12 @@ return {
         "<cmd>CodeCompanionChat Add<cr>",
         desc = "Code companion add to chat",
         mode = { "v" }
+      },
+      {
+        "gp",
+        "<cmd>'<,'>CodeCompanion<cr>",
+        desc = "Code companion inline assist",
+        mode = { "x" }
       },
     },
     config = function(_, opts)
