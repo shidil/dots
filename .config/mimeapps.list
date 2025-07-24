@@ -1,7 +1,7 @@
 [Default Applications]
 text/plain=firefox.desktop
 image/png=firefox.desktop
-text/csv=userapp-gedit-67RIK2.desktop
+text/csv=userapp-wezterm start -- nvim-NHPY92.desktop
 application/pdf=firefox.desktop
 image/jpeg=userapp-gimp-DX7UU2.desktop
 video/mp4=firefox.desktop
@@ -10,11 +10,21 @@ audio/x-vorbis+ogg=firefox.desktop
 audio/flac=audacious.desktop
 application/x-openvpn-profile=userapp-nano-4J82V2.desktop
 application/x-zerosize=userapp-gedit-67RIK2.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/chrome=firefox.desktop
+text/html=firefox.desktop
+application/x-extension-htm=firefox.desktop
+application/x-extension-html=firefox.desktop
+application/x-extension-shtml=firefox.desktop
+application/xhtml+xml=firefox.desktop
+application/x-extension-xhtml=firefox.desktop
+application/x-extension-xht=firefox.desktop
 
 [Added Associations]
 text/plain=org.gnome.gedit.desktop;firefox.desktop;
 image/png=firefox.desktop;
-text/csv=nvim.desktop;userapp-gedit-67RIK2.desktop;
+text/csv=nvim.desktop;userapp-gedit-67RIK2.desktop;userapp-wezterm start -- nvim-NHPY92.desktop;
 application/pdf=firefox.desktop;
 image/jpeg=firefox.desktop;userapp-gimp-RMMUU2.desktop;userapp-gimp-DX7UU2.desktop;
 video/mp4=mpv.desktop;firefox.desktop;
@@ -27,3 +37,13 @@ audio/flac=audacious.desktop;
 application/x-openvpn-profile=userapp-nvim-58YCW2.desktop;userapp-nano-4J82V2.desktop;
 application/json=org.gnome.gedit.desktop;
 application/x-zerosize=userapp-gedit-67RIK2.desktop;
+x-scheme-handler/http=firefox.desktop;
+x-scheme-handler/https=firefox.desktop;
+x-scheme-handler/chrome=firefox.desktop;
+text/html=firefox.desktop;
+application/x-extension-htm=firefox.desktop;
+application/x-extension-html=firefox.desktop;
+application/x-extension-shtml=firefox.desktop;
+application/xhtml+xml=firefox.desktop;
+application/x-extension-xhtml=firefox.desktop;
+application/x-extension-xht=firefox.desktop;
