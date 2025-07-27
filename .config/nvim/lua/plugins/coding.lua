@@ -267,6 +267,25 @@ return {
       "MeanderingProgrammer/render-markdown.nvim",
     },
     opts = {
+      rules = {
+        opts = {
+          rules_filenames = {
+            ".rules",
+            ".goosehints",
+            ".cursorrules",
+            ".windsurfrules",
+            ".clinerules",
+            ".github/copilot-instructions.md",
+            "AGENT.md",
+            "AGENTS.md",
+            "CLAUDE.md",
+            ".codecompanionrules",
+          },
+          debug = false,
+          enabled = true,
+          extract_file_paths_from_chat_message = nil,
+        }
+      },
       extensions = {
         mcphub = {
           callback = "mcphub.extensions.codecompanion",
@@ -335,6 +354,22 @@ return {
               default_tools = { "vectorcode_toolbox", "read_file" },
               auto_submit_errors = true,  -- Send any errors to the LLM automatically?
               auto_submit_success = true, -- Send any successful output to the LLM automatically?
+            },
+            checklist_dag_list = {
+              description = "Read the current DAG checklist(s) for the workspace",
+              callback = require("plugins.codecompanion.checklist_dag").checklist_dag_list
+            },
+            checklist_dag_create = {
+              description = "Create a DAG-enabled checklist with task dependencies and parallel execution",
+              callback = require("plugins.codecompanion.checklist_dag").checklist_dag_create
+            },
+            checklist_dag_status = {
+              description = "Read the status of a specific DAG checklist (or latest incomplete)",
+              callback = require("plugins.codecompanion.checklist_dag").checklist_dag_status
+            },
+            checklist_dag_complete_task = {
+              description = "Mark the current in-progress task as complete in a DAG checklist",
+              callback = require("plugins.codecompanion.checklist_dag").checklist_dag_complete_task
             },
           },
           opts = {
