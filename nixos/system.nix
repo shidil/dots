@@ -31,15 +31,27 @@
   # Set your time zone.
   time.timeZone = "Australia/Melbourne";
 
-  # docker
-  virtualisation.docker.enable = true;
-  virtualisation.docker.daemon.settings = {
-    features = {
-        "containerd-snapshotter" = true;
+  virtualisation = {
+    # Waydroid
+    waydroid.enable = true;
+    # docker
+    docker.enable = true;
+    docker.daemon.settings = {
+      features = {
+          "containerd-snapshotter" = true;
+      };
     };
+    # Virtual machines
+    libvirtd = {
+      enable = true;
+      qemu = {
+        swtpm.enable = true;
+        ovmf.enable = true;
+        ovmf.packages = [ pkgs.OVMFFull.fd ];
+      };
+    };
+    spiceUSBRedirection.enable = true;
   };
-  # Waydroid
-  virtualisation.waydroid.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -65,6 +77,7 @@
     enable = true;
     wrapperFeatures.gtk = true;
   };
+  programs.dconf.enable = true;
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -81,6 +94,7 @@
     nssmdns4 = true;
     publish.enable = true;
   };
+  services.spice-vdagentd.enable = true;
   services.tailscale.enable = false;
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
@@ -115,7 +129,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.shidil = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "RENDER" "VIDEO" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "docker" "RENDER" "VIDEO" "libvirtd" "kvm"]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
@@ -136,6 +150,14 @@
     lsof # list open files
     neofetch # view system information in a nutshell
     wl-clipboard # wl-copy wl-paste clipboard access, and manipulaiton
+    virt-manager
+    virt-viewer
+    spice 
+    spice-gtk
+    spice-protocol
+    win-virtio
+    win-spice
+    adwaita-icon-theme
   ];
   environment.variables.EDITOR = "nvim";
   environment.shellAliases = {
@@ -166,6 +188,9 @@
     libpng
     zlib
     nss
+    atkmm
+    dbus
+    glib
     libusb1
     nspr
     expat
