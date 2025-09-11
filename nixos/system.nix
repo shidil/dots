@@ -203,6 +203,7 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
+  programs.ssh.startAgent = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
