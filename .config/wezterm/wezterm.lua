@@ -45,4 +45,8 @@ config.macos_window_background_blur = 8
 config.scrollback_lines = 10000
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
+config.keys = {
+  { key = "Enter", mods = "SHIFT", action = wezterm.action { SendString = "\x1b\r" } },
+}
+
 return config
