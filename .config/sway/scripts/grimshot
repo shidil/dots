@@ -161,7 +161,7 @@ else
     TITLE="Screenshot of $SUBJECT"
     MESSAGE=$(basename "$FILE")
     notifyOk "$MESSAGE" "$TITLE"
-    echo "$FILE"
+    echo "$FILE" | wl-copy
   else
     notifyError "Error taking screenshot with grim"
   fi
