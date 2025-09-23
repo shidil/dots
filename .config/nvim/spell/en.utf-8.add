@@ -11,3 +11,6 @@ func/!
 EndsAt/!
 CancelAgreement/!
 Drain/!
+setFilter/!
+onClose
+availableRewards/!

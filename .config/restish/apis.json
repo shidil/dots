@@ -3,7 +3,7 @@
   "paytootest": {
     "base": "https://sandbox.payrollapi.com.au/api/v1",
     "spec_files": [
-      "/home/shidil/projects/payout/api/paytoo-openapi.yaml"
+      "/home/shidil/projects/payroo-group/paytoo/main/api/paytoo-openapi.yaml"
     ],
     "profiles": {
       "default": {
@@ -21,7 +21,7 @@
   "paytooprod": {
     "base": "https://api.payrollapi.com.au/api/v1",
     "spec_files": [
-      "/home/shidil/projects/payout/api/paytoo-openapi.yaml"
+      "/home/shidil/projects/payroo-group/paytoo/main/api/paytoo-openapi.yaml"
     ],
     "profiles": {
       "default": {

@@ -2,23 +2,42 @@ return {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
+    branch = "nes",
     event = "InsertEnter",
+    dependencies = {
+      {
+        "AntoineGS/copilot-lsp",
+        branch = "auto_trigger_config",
+        init = function()
+          vim.g.copilot_nes_debounce = 500
+        end,
+      }
+    },
     config = function()
       require("copilot").setup({
         panel = {
           enabled = false,
         },
+        nes = {
+          enabled = false,
+          auto_trigger = true,
+          keymap = {
+            accept_and_goto = "<Tab>",
+            accept = false,
+            dismiss = "<Esc>",
+          },
+        },
         suggestion = {
           enabled = true,
-          auto_trigger = false,
+          auto_trigger = true,
           debounce = 100,
           trigger_on_accept = false,
           keymap = {
             accept = "<Tab>",
             accept_word = false,
             accept_line = false,
-            next = "<C-l>",
-            prev = false,
+            next = "<C-L>",
+            prev = "<C-H>",
             dismiss = false,
           },
         },
@@ -238,11 +257,23 @@ return {
   },
   {
     'MeanderingProgrammer/render-markdown.nvim',
+    enabled = false,
     opts = {},
     ft = { "markdown", "Avante", "codecompanion" },
   },
   {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+    opts = {
+      preview = {
+        filetypes = { "markdown", "Avante", "codecompanion" },
+        ignore_buftypes = {},
+      },
+    },
+  },
+  {
     "olimorris/codecompanion.nvim",
+    enabled = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -256,7 +287,8 @@ return {
       },
       {
         "Davidyz/VectorCode",
-        version = "*", -- optional, depending on whether you're on nightly or release
+        enabled = false, -- Disabled temporally
+        version = "*",   -- optional, depending on whether you're on nightly or release
         dependencies = { "nvim-lua/plenary.nvim" },
         build = "uv tool upgrade vectorcode",
         cmd = "VectorCode", -- if you're lazy-loading VectorCode
@@ -264,28 +296,23 @@ return {
       {
         "ravitemer/codecompanion-history.nvim",
       },
-      "MeanderingProgrammer/render-markdown.nvim",
+      {
+        "OXY2DEV/markview.nvim"
+      },
+      {
+        "HakonHarnes/img-clip.nvim",
+        opts = {
+          filetypes = {
+            codecompanion = {
+              prompt_for_file_name = false,
+              template = "[Image]($FILE_PATH)",
+              use_absolute_path = true,
+            },
+          },
+        },
+      },
     },
     opts = {
-      rules = {
-        opts = {
-          rules_filenames = {
-            ".rules",
-            ".goosehints",
-            ".cursorrules",
-            ".windsurfrules",
-            ".clinerules",
-            ".github/copilot-instructions.md",
-            "AGENT.md",
-            "AGENTS.md",
-            "CLAUDE.md",
-            ".codecompanionrules",
-          },
-          debug = false,
-          enabled = true,
-          extract_file_paths_from_chat_message = nil,
-        }
-      },
       extensions = {
         mcphub = {
           callback = "mcphub.extensions.codecompanion",
@@ -302,7 +329,7 @@ return {
           },
         },
         vectorcode = {
-          enabled = true,
+          enabled = false,
           opts = {
             tool_group = { extras = { "file_search" }, collapse = true },
             tool_opts = {
@@ -337,6 +364,13 @@ return {
           provider = "default"
         }
       },
+      memory = {
+        opts = {
+          chat = {
+            enabled = true,
+          },
+        },
+      },
       strategies = {
         chat = {
           keymaps = {
@@ -349,27 +383,12 @@ return {
               description = "Send",
             },
           },
+          adapter = "claude_code",
           tools = {
             opts = {
-              default_tools = { "vectorcode_toolbox", "read_file" },
+              default_tools = { "read_file" },
               auto_submit_errors = true,  -- Send any errors to the LLM automatically?
               auto_submit_success = true, -- Send any successful output to the LLM automatically?
-            },
-            checklist_dag_list = {
-              description = "Read the current DAG checklist(s) for the workspace",
-              callback = require("plugins.codecompanion.checklist_dag").checklist_dag_list
-            },
-            checklist_dag_create = {
-              description = "Create a DAG-enabled checklist with task dependencies and parallel execution",
-              callback = require("plugins.codecompanion.checklist_dag").checklist_dag_create
-            },
-            checklist_dag_status = {
-              description = "Read the status of a specific DAG checklist (or latest incomplete)",
-              callback = require("plugins.codecompanion.checklist_dag").checklist_dag_status
-            },
-            checklist_dag_complete_task = {
-              description = "Mark the current in-progress task as complete in a DAG checklist",
-              callback = require("plugins.codecompanion.checklist_dag").checklist_dag_complete_task
             },
           },
           opts = {
@@ -387,7 +406,7 @@ return {
           return require("codecompanion.adapters").extend("copilot", {
             schema = {
               model = {
-                default = "gpt-4.1",
+                default = "gpt-5",
               },
             },
           })
@@ -404,6 +423,15 @@ return {
             },
           })
         end,
+        acp = {
+          claude_code = function()
+            return require("codecompanion.adapters").extend("claude_code", {
+              env = {
+                CLAUDE_CODE_OAUTH_TOKEN = "cmd: pass show CLAUDE_CODE_OAUTH_TOKEN",
+              },
+            })
+          end,
+        }
       }
     },
     -- https://codecompanion.olimorris.dev/getting-started.html#suggested-plugin-workflow
@@ -440,4 +468,59 @@ return {
       vim.cmd([[cab cc CodeCompanion]])
     end
   },
+  {
+    'milanglacier/minuet-ai.nvim',
+    enabled = false,
+    config = function()
+      require('minuet').setup {
+        virtualtext = {
+          enabled_ft = { 'lua', 'python', 'javascript', 'typescript', 'go' },
+          auto_trigger_ft = { 'lua', 'go' },
+          keymap = {
+            -- accept whole completion
+            accept = '<A-A>',
+            -- accept one line
+            accept_line = '<A-a>',
+            -- accept n lines (prompts for number)
+            -- e.g. "A-z 2 CR" will accept 2 lines
+            accept_n_lines = '<A-z>',
+            -- Cycle to prev completion item, or manually invoke completion
+            prev = '<A-[>',
+            -- Cycle to next completion item, or manually invoke completion
+            next = '<A-]>',
+            dismiss = '<A-e>',
+          },
+        },
+        provider = 'claude',
+      }
+    end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+  {
+    "coder/claudecode.nvim",
+    enabled = false,
+    dependencies = { "folke/snacks.nvim" },
+    config = true,
+    keys = {
+      { "<LocalLeader>a",  nil,                              desc = "AI/Claude Code" },
+      { "<LocalLeader>ac", "<cmd>ClaudeCode<cr>",            desc = "Toggle Claude" },
+      { "<LocalLeader>af", "<cmd>ClaudeCodeFocus<cr>",       desc = "Focus Claude" },
+      { "<LocalLeader>ar", "<cmd>ClaudeCode --resume<cr>",   desc = "Resume Claude" },
+      { "<LocalLeader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+      { "<LocalLeader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+      { "<LocalLeader>ab", "<cmd>ClaudeCodeAdd %<cr>",       desc = "Add current buffer" },
+      { "<LocalLeader>as", "<cmd>ClaudeCodeSend<cr>",        mode = "v",                  desc = "Send to Claude" },
+      {
+        "<leader>as",
+        "<cmd>ClaudeCodeTreeAdd<cr>",
+        desc = "Add file",
+        ft = { "NvimTree", "neo-tree", "oil", "minifiles" },
+      },
+      -- Diff management
+      { "<LocalLeader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+      { "<LocalLeader>ad", "<cmd>ClaudeCodeDiffDeny<cr>",   desc = "Deny diff" },
+    },
+  }
 }
