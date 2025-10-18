@@ -5,10 +5,10 @@
     "margin": "-4 0 0 0",
     "modules-left": ["sway/workspaces", "tray", "sway/mode", "custom/cava-internal"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "temperature", "cpu", "memory", "temperature#gpu", "network", "custom/power"], 
-    
+    "modules-right": ["pulseaudio", "temperature", "cpu", "memory", "temperature#gpu", "network", "custom/power"],
+
  // Modules configuration
- 
+
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -42,12 +42,12 @@
         "on-click": "~/.config/waybar/scripts/swap.sh",
         "tooltip": "Swap between waybar configs",
         "format": "Bg  "
-    },    
+    },
     "custom/mpd": {
         "format": " {title} - {artist}",
         "interval": 5,
         "exec": "mpc current --format='\"title\":\"%title%\",\"artist\":\"%artist%\"'"
-    },      
+    },
     "custom/cava-internal": {
         "exec": "sh ~/.config/waybar/scripts/Cava.sh",
         "format": "{}",
@@ -55,7 +55,7 @@
         "on-click": "hyprctl reload && killall waybar && waybar",
         "layer": "below",
         "output": "all"
-    },      
+    },
     "custom/gpu-usage": {
       "exec": "cat /sys/class/hwmon/hwmon5/device/gpu_busy_percent",
       "format": "󰩧 {}%",
@@ -124,7 +124,7 @@
             // "good": 95,
             "warning": 30,
             "critical": 15
-        },       
+        },
         "format": "{icon} {capacity: >3}%",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
@@ -155,6 +155,7 @@
             "default": ["", ""]
         },
         "on-click": "pavucontrol",
+        "on-click-right": "~/.config/sway/scripts/pulsecycle.sh"
     },
      "custom/pacman": {
         "format": " {}",

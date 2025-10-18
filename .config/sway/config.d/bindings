@@ -144,8 +144,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Screenshits TBD
-bindsym $mod+Home exec $grimshot --notify copy area 
-bindsym $mod+Shift+Home exec $grimshot --notify save area 
+bindsym $mod+Home exec $grimshot --notify copy area
+bindsym $mod+Shift+Home exec $grimshot --notify save area
 
 # Notifications
 bindsym $mod+Alt+Home exec swaync-client -t
@@ -159,3 +159,5 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+bindsym $mod+Delete exec ~/.config/sway/scripts/pulsecycle.sh
