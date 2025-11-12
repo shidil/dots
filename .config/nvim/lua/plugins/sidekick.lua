@@ -16,9 +16,16 @@ return {
       "<tab>",
       function()
         -- if there is a next edit, jump to it, otherwise apply it if any
-        if not require("sidekick").nes_jump_or_apply() then
-          return "<Tab>" -- fallback to normal tab
+        if require("sidekick").nes_jump_or_apply() then
+          return -- jumped or applied
         end
+
+        if require("copilot.suggestion").is_visible() then
+          require("copilot.suggestion").accept()
+          return
+        end
+
+        return "<Tab>" -- fallback to normal tab
       end,
       expr = true,
       desc = "Goto/Apply Next Edit Suggestion",

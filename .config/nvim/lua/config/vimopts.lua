@@ -24,12 +24,6 @@ vim.opt.colorcolumn = "100"
 
 vim.opt.shell = "fish";
 
-vim.filetype.add({
-	pattern = {
-		['.*/*Tiltfile'] = 'starlark',
-	},
-})
-
 vim.opt.spell = true
 vim.opt.spelllang = "en_us"
 vim.opt.spellsuggest = "best"
@@ -40,8 +34,16 @@ vim.g.loaded_netrwPlugin = 1
 
 -- views can only be fully collapsed with the global statusline
 vim.opt.laststatus = 3
+
+-- Add custom filetype for Tiltfile
 vim.filetype.add({
-	extension = {
-		envrc = "sh"
-	}
+  pattern = {
+    ['.*/*Tiltfile'] = 'starlark',
+  },
+})
+-- Add custom filetype for .envrc files
+vim.filetype.add({
+  extension = {
+    envrc = "sh"
+  }
 })
