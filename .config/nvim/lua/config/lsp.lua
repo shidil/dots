@@ -6,6 +6,11 @@ vim.lsp.enable('jsonls')
 vim.lsp.enable('html')
 vim.lsp.enable('cssls')
 vim.lsp.enable('starlark_rust')
+vim.lsp.enable('biome')
+vim.lsp.enable('copilot')
+
+--https://neovim.io/doc/user/lsp.html#lsp-inline_completion
+--vim.lsp.inline_completion.enable()
 
 -- add somewhere in your config that runs on startup:
 vim.diagnostic.config({
