@@ -41,6 +41,7 @@
     fuzzel
     libnotify
     swaynotificationcenter
+    swaybg
     waybar
     slurp
     grim

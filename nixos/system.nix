@@ -77,6 +77,9 @@
     enable = true;
     wrapperFeatures.gtk = true;
   };
+  programs.niri = {
+    enable = true;
+  };
   programs.dconf.enable = true;
   xdg.portal = {
     enable = true;
@@ -158,6 +161,7 @@
     win-virtio
     win-spice
     adwaita-icon-theme
+    xwayland-satellite
   ];
   environment.variables.EDITOR = "nvim";
   environment.shellAliases = {

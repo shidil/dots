@@ -6,8 +6,8 @@ Dotfiles for my de
 
 |  | NixOS | MacOS |
 |---|---|---|
-| Window Manager | [Sway](https://github.com/swaywm/sway) | [AeroSpace](https://github.com/nikitabobko/AeroSpace) |
-| Editor | [Neovim](https://neovim.io/) | |
+| Window Manager | [Niri](https://github.com/YaLTeR/niri) | [AeroSpace](https://github.com/nikitabobko/AeroSpace) |
+| Editor | [Neovim](https://neovim.io/) | [Neovim](https://neovim.io/)  |
 
 
 
