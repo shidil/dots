@@ -1,0 +1,6 @@
+{
+    "device": "alsa_output.usb-0c76_Fosi_Audio_K5_Pro-00.analog-stereo",
+    "device-description": "Fosi Audio K5 Pro Analog Stereo",
+    "device-profile": "analog-output-speaker",
+    "preset-name": "599"
+}
