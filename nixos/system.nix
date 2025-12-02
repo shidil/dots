@@ -109,6 +109,9 @@
 
   programs.thunar.enable = true;
 
+  # network block device support
+  programs.nbd.enable = true;
+
   # Enable bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
@@ -155,6 +158,8 @@
     wl-clipboard # wl-copy wl-paste clipboard access, and manipulaiton
     virt-manager
     virt-viewer
+    libvirt
+    libvirt-glib
     spice 
     spice-gtk
     spice-protocol
