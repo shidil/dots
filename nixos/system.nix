@@ -34,6 +34,7 @@
   virtualisation = {
     # Waydroid
     waydroid.enable = true;
+    waydroid.package = pkgs.waydroid-nftables;
     # docker
     docker.enable = true;
     docker.daemon.settings = {
@@ -46,8 +47,6 @@
       enable = true;
       qemu = {
         swtpm.enable = true;
-        ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
     };
     spiceUSBRedirection.enable = true;
@@ -163,7 +162,7 @@
     spice 
     spice-gtk
     spice-protocol
-    win-virtio
+    virtio-win
     win-spice
     adwaita-icon-theme
     xwayland-satellite
@@ -212,7 +211,7 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-  programs.ssh.startAgent = true;
+  # programs.ssh.startAgent = true; disabled due to conflict with gnone gcr-ssh-agent. Fix after upgrade
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
