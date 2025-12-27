@@ -6,6 +6,8 @@ vim.lsp.enable('html')
 vim.lsp.enable('cssls')
 vim.lsp.enable('starlark_rust')
 vim.lsp.enable('biome')
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('buf_ls')
 
 -- add somewhere in your config that runs on startup:
 vim.diagnostic.config({
