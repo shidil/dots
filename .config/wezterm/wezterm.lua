@@ -56,4 +56,24 @@ if wezterm.target_triple == 'aarch64-apple-darwin' then
   config.window_decorations = "RESIZE"
 end
 
+config.ssh_domains = {
+  {
+    name = 'oolio',
+    remote_address = 'oolio',
+    username = 'oolio',
+    default_prog = { 'fish' }
+  },
+}
+config.unix_domains = {
+  {
+    name = "unix",
+  },
+  {
+    name = "wpoolio",
+    proxy_command = { "waypipe", "--xwls", "ssh", "-t", "oolio", "wezterm", "cli", "proxy" },
+  }
+}
+
+--config.default_gui_startup_args = { 'connect', 'unix' }
+
 return config
