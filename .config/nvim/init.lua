@@ -2,6 +2,7 @@ require("config.vimopts")
 require("config.lazy")
 require("config.lsp")
 require("config.remaps")
+require("config.filetypes")
 
 local augroup = vim.api.nvim_create_augroup("numbertoggle", {})
 
