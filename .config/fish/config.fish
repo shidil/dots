@@ -51,8 +51,13 @@ alias ed "find_vi"
 alias cd "z"
 alias less "bat"
 
-alias claude "GITHUB_TOKEN='' $(which claude)"
-alias gh "GITHUB_TOKEN='' $(which gh)"
+if type -q claude
+  alias claude "GITHUB_TOKEN='' $(which claude)"
+end
+
+if type -q gh
+  alias gh "GITHUB_TOKEN='' $(which gh)"
+end
 
 set -x AWS_PROFILE default
 set -x AWS_REGION ap-southeast-2
