@@ -1,0 +1,147 @@
+# syntax=toml
+#
+# Example configuration for Paneru.
+#
+[options]
+# Enables focus follows mouse. Enabled by default, set to false to disable.
+# focus_follows_mouse = true
+
+# Enables mouse follows focus. Enabled by default, set to false to disable.
+mouse_follows_focus = true
+
+# Array of widths used by the `window_resize` action to cycle between.
+# Defaults to 25%, 33%, 50%, 66% and 75%.
+preset_column_widths = [ 0.25, 0.33, 0.50, 0.66, 0.75 ]
+
+# How many fingers to use for moving windows left and right.
+# Make sure that it doesn't clash with OS setting for workspace switching.
+# Values lower than 3 will be ignored.
+# Remove the line to disable the gesture feature.
+# Apple touchpads support gestures with more than five fingers (!),
+# but it is probably not that useful to use two hands :)
+swipe_gesture_fingers = 4
+
+# Swiping the windows left and right will keep sliding them until the first or
+# last window. Set to false to always keep the current window on screen and
+# fully exposed. Enabled by default.
+# continuous_swipe = true
+
+# Animation speed in 1/10th of display resolution per second.
+# E.g. a value of 20 means: move at a speed of two display sizes per second.
+# To disable animations, leave this unset or set to a very large value.
+animation_speed = 24
+
+# Automatically center the focused window when switching focus with keyboard,
+# i.e. 'window_focus_west' or 'window_focus_east'.
+auto_center = true
+
+# Height of off-screen window slivers as a ratio (0.0–1.0) of the display
+# height. Lower values hide the window's corner radius at screen edges.
+# Default: 1.0 (full height, no inset).
+sliver_height = 1.0
+
+# Width of off-screen window slivers in pixels. Controls how much of an
+# off-screen window peeks from the screen edge.
+# Default: 5 pixels.
+sliver_width = 10
+
+# Override the system-reported menubar height (in pixels).
+# Useful when auto-hiding the menubar or when the detected value is wrong.
+# When unset, the height reported by macOS is used.
+menubar_height = 0
+
+# Padding applied at screen edges (in pixels). Independent from the
+# between-window gaps set by per-window horizontal/vertical_padding.
+# Default: 0 on all sides.
+# padding_top = 0
+# padding_bottom = 0
+[padding]
+left = 20
+right = 20
+
+[decorations.inactive.dim]
+# Dimming intensity. -1.0 is fully black, 1.0 is fully white.
+opacity = -0.005
+# Dimming intensity used when macOS is in Dark Mode.
+opacity_night = -0.005
+
+[decorations.active.border]
+# Draw a border around the active (focused) window.
+enabled = true
+opacity = 0.5
+radius = "auto"
+
+
+[bindings]
+# Moves the focus between windows.
+window_focus_west = ["alt - h", "alt - leftarrow"]
+window_focus_east = ["alt - l", "alt - rightarrow"]
+window_focus_north = ["alt - k", "alt - uparrow"]
+window_focus_south = ["alt - j", "alt - downarrow"]
+
+# Swaps windows in chosen direction.
+window_swap_west = "alt + shift - h"
+window_swap_east = "alt  + shift - l"
+
+# Jump to the left-most or right-most windows.
+window_focus_first = "alt + ctrl - h"
+window_focus_last = "alt + ctrl - l"
+
+# Move the current window into the left-most or right-most positions.
+window_swap_first = "cmd + shift - h"
+window_swap_last = "cmd + shift - l"
+
+# Centers the current window on screen.
+window_center = "alt - c"
+
+# Cycles between the window sizes defined in the `preset_column_widths` option.
+window_resize = "alt - r"
+
+# Toggle full width for the current focused window.
+window_fullwidth = "alt - f"
+
+# Toggles the window for management. If unmanaged, the window will be "floating".
+window_manage = "ctrl + alt - t"
+
+# Stacks and unstacks a window into the left column. Each window gets a 1/N of the height.
+window_stack = "alt - ]"
+window_unstack = "alt + shift - ]"
+
+# Moves currently focused window to another display.
+window_nextdisplay = "alt - n"
+
+# Size stacked windows in the column to equal heights.
+window_equalize = "alt + shift - e"
+
+# Snap overflowing window into the viewport
+window_snap = "alt - s"
+
+# Quits the window manager.
+quit = "ctrl + alt - q"
+
+# Virtual workspaces (experimental)
+window_virtual_north = "cmd + shift - k"
+window_virtual_south = "cmd + shift - j"
+window_virtualmove_north = "cmd + alt - k"
+window_virtualmove_south = "cmd + alt - j"
+
+# Window properties, matched by a RegExp title string.
+[windows]
+
+[windows.pip]
+# Title RegExp pattern is required.
+title = "Picture.*(in)?.*[Pp]icture"
+# Do not manage this window, e.g. it will be floating.
+floating = true
+
+[windows.neovide]
+# Matches an editor and always inserts its window at index 1.
+title = ".*"
+bundle_id = "com.neovide.neovide"
+index = 1
+
+[windows.all]
+# Matches all windows and adds a few pixels of spacing to their borders.
+title = ".*"
+horizontal_padding = 4
+vertical_padding = 2
