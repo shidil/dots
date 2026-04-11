@@ -2,7 +2,7 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-set XDG_CONFIG_HOME "$HOME/.config/"
+set -x XDG_CONFIG_HOME "$HOME/.config/"
 
 # https://sidneyliebrand.medium.com/how-fzf-and-ripgrep-improved-my-workflow-61c7ca212861
 set -gx FZF_DEFAULT_COMMAND  'rg --files --no-ignore-vcs --hidden'
