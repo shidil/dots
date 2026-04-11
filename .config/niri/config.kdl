@@ -353,7 +353,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return { spawn "wezterm" "start" "--domain" "unix" "fish"; }
+    Mod+Return { spawn "wezterm" "start" "--domain" "local" "fish"; }
     Mod+D { spawn "fuzzel"; }
     Mod+O { spawn "firefox"; }
     Mod+Shift+O { spawn "firefox" "--private-window"; }

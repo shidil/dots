@@ -236,7 +236,7 @@ config.unix_domains = {
   }
 }
 
-config.default_gui_startup_args = { 'connect', 'unix' }
+--config.default_gui_startup_args = { 'connect', 'local' }
 
 local function segments_for_right_status(window)
   return {
