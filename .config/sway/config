@@ -24,4 +24,10 @@ output * bg ~/Pictures/wallpapers/wallpaper.png fill
 #}
 
 # Set the display to high refresh rate
-output DP-1 mode 3440x1440@144Hz
+#output DP-1 mode 3440x1440@144Hz
+
+output DP-4 {
+    mode 3440x1440@144Hz
+    render_bit_depth 10
+    hdr off
+}
