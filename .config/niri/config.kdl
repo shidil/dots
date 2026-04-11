@@ -65,7 +65,7 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
-output "DP-1" {
+output "DP-4" {
     // Uncomment this line to disable this output.
     // off
 
@@ -247,6 +247,13 @@ layout {
     }
 }
 
+// Render on the iGPU and ignore the discrete RX 7900 XT to prevent
+// BACO runtime PM wake-up loops that can cause system hangs.
+debug {
+    render-drm-device "/dev/dri/by-path/pci-0000:13:00.0-render"
+    ignore-drm-device "/dev/dri/by-path/pci-0000:03:00.0-render"
+}
+
 // Add lines like this to spawn processes at startup.
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
@@ -296,6 +303,12 @@ window-rule {
     default-column-width {}
 }
 
+window-rule {
+    match app-id=r#"^com\.mitchellh\.ghostty$"#
+    draw-border-with-background false
+    default-column-width { proportion 0.33; }
+}
+
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
     // This app-id regular expression will work for both:
@@ -340,10 +353,10 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    Mod+Return { spawn "wezterm"; }
+    Mod+Return { spawn "wezterm" "start" "--domain" "unix" "fish"; }
     Mod+D { spawn "fuzzel"; }
     Mod+O { spawn "firefox"; }
-    Mod+Shift+O { spawn "firefox --private-window"; }
+    Mod+Shift+O { spawn "firefox" "--private-window"; }
     Super+Alt+L { spawn "swaylock"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
