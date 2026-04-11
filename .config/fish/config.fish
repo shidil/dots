@@ -52,6 +52,7 @@ alias cd "z"
 alias less "bat"
 
 alias claude "GITHUB_TOKEN='' $(which claude)"
+alias gh "GITHUB_TOKEN='' $(which gh)"
 
 set -x AWS_PROFILE default
 set -x AWS_REGION ap-southeast-2
