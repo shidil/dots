@@ -21,12 +21,12 @@ input {
     // Next sections include libinput settings.
     // Omitting settings disables them, or leaves them at their default values.
     touchpad {
-        // off
-        tap
+        off
+        // tap
         // dwt
         // dwtp
         // drag-lock
-        natural-scroll
+        // natural-scroll
         // accel-speed 0.2
         // accel-profile "flat"
         // scroll-method "two-finger"
@@ -104,7 +104,7 @@ output "DP-4" {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 16
+    gaps 8
 
     // When to center a column when changing focus, options are:
     // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -240,10 +240,10 @@ layout {
     // Top and bottom struts will simply add outer gaps in addition to the area occupied by
     // layer-shell panels and regular gaps.
     struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
+        left 128
+        right 128
+        top -4
+        bottom -6
     }
 }
 
@@ -357,7 +357,7 @@ binds {
     Mod+D { spawn "fuzzel"; }
     Mod+O { spawn "firefox"; }
     Mod+Shift+O { spawn "firefox" "--private-window"; }
-    Super+Alt+L { spawn "swaylock"; }
+    Super+Alt+L { spawn "swaylock" "--image" "~/Pictures/wallpapers/lock.png" "--indicator-caps-lock"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.

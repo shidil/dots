@@ -1,0 +1,250 @@
+// -*- mode: jsonc -*-
+{
+    "layer": "top",
+    "position": "right",
+    //"height"
+    "margin-top": 4,
+    "margin-bottom": 4,
+    "margin-left": 4,
+    "width": 40,
+
+    "modules-left": [
+        "group/power",
+        "custom/playpause",
+        "custom/wallpaper",
+        "niri/workspaces"
+    ],
+
+    "modules-center": [
+        "niri/window"
+    ],
+
+    "modules-right": [
+        "network",
+        "group/audio",
+        "group/apps",
+        "tray",
+        "clock"
+    ],
+
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%d\n%m\n%y}",
+        "format": "{:%H\n%M}",
+        "interval": 60
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}\n{icon}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "MUT\n󰝟",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pactl set-sink-mute 0 toggle",
+        "tooltip": false,
+        "justify": "center",
+        "reverse-scrolling": true
+    },
+
+    "pulseaudio/slider": {
+        "min": 0,
+        "max": 100,
+        "orientation": "vertical"
+    },
+
+    "group/audio": {
+        "modules" : [
+            "pulseaudio",
+            "pulseaudio/slider"
+        ],
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": true
+        }
+    },
+
+    "backlight": {
+        "format": "{percent}\n{icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "tooltip": false,
+        "justify": "center",
+        "reverse-scrolling": true
+    },
+
+    "backlight/slider": {
+        "min": 3,
+        "max": 100,
+        "orientation": "vertical",
+    },
+
+    "group/brightness": {
+        "modules" : [
+            "backlight",
+            "backlight/slider"
+        ],
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": true
+        }
+    },
+
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}\n{icon}",
+        "format-full": "{capacity}\n{icon}",
+        "format-charging": "{capacity}\n",
+        "format-plugged": "{capacity}\n",
+        //"format-alt": "{time} {icon}",
+        "tooltip-format": "{power} W, {timeTo}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""],
+        "justify": "center"
+    },
+
+    "group/stats": {
+        "modules": [
+            "battery",
+            "group/brightness"
+        ],
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 750,
+            "transition-left-to-right": false
+        }
+    },
+    
+    "niri/window": {
+        "tooltip": false,
+        "format": "{}",
+        "rotate": 270,
+        "rewrite": {
+            "^null$": "Desktop"
+        }
+    },
+
+    "custom/appmenu": {
+        "format": "󰀻",
+        "on-click": "niri msg action toggle-overview",
+        "tooltip": false
+    },
+
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "on-click-right": "close"
+    },
+
+    "group/apps": {
+        "modules" : [
+            "custom/appmenu",
+            "wlr/taskbar"
+        ],
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        }
+    },
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "rotate": 270
+    },
+
+    "cpu": {
+        "format": "{usage}%\n",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "{}%\n"
+    },
+
+    "group/power": {
+        "modules": [
+            "custom/powerbutton",
+            "custom/reboot",
+            "custom/suspend",
+            "custom/lock",
+            "custom/idlekiller",
+            "user",
+        ],
+        "orientation": "inherit",
+        "drawer": {
+            "transition-duration": 500
+        }
+    },
+
+    "custom/powerbutton": {
+        "format": "⏻",
+        "on-click": "poweroff",
+        "tooltip-format": "Power Off"
+    },
+
+    "custom/reboot": {
+        "format": "󰜉",
+        "on-click": "reboot",
+        "tooltip-format": "Reboot"
+    },
+
+    "custom/suspend": {
+        "format": "",
+        "on-click": "systemctl suspend",
+        "tooltip-format": "Suspend"
+    },
+
+    "custom/lock": {
+        "format": "󰍁",
+        "on-click": "swaylock --image ~/Pictures/wallpapers/lock.png --indicator-caps-lock",
+        "tooltip-format": "Lock"
+    },
+
+    "custom/idlekiller": {
+        "format": "",
+        "on-click": "pkill swayidle || swayidle",
+        "tooltip-format": "Inhibit Idle"
+    },
+
+    "user": {
+        "format": "{work_H}:{work_M}:{work_S} ↑",
+        "interval": 60,
+        "rotate": 270,
+    },
+
+    "custom/playpause": {
+        "format": "󰐎",
+        "on-click": "playerctl play-pause",
+        "tooltip": false
+    },
+
+    "custom/wallpaper": {
+        "format": "󰸉",
+        "on-click": "qs ipc call panelWindow toggleWallpaperSwitcher",
+        "tooltip": false
+    }
+}
