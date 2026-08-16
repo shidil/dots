@@ -1,12 +1,10 @@
 # dots
 
-Dotfiles for my de
-
-![image](https://github.com/user-attachments/assets/dd43c88a-c29c-49bc-94ef-901d086acd72)
+Dotfiles for my DE
 
 |  | NixOS | MacOS |
 |---|---|---|
-| Window Manager | [Niri](https://github.com/YaLTeR/niri) | [AeroSpace](https://github.com/nikitabobko/AeroSpace) |
+| Window Manager | [Niri](https://github.com/YaLTeR/niri) | [Strip](https://github.com/shidil/strip) |
 | Editor | [Neovim](https://neovim.io/) | [Neovim](https://neovim.io/)  |
 
 
