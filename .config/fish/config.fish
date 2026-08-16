@@ -1,7 +1,3 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-end
-
 set -x XDG_CONFIG_HOME "$HOME/.config/"
 
 # https://sidneyliebrand.medium.com/how-fzf-and-ripgrep-improved-my-workflow-61c7ca212861
@@ -72,5 +68,9 @@ source ~/.config/fish/functions/git.fish
 # Activate tirith security check
 tirith init --shell fish | source
 
-fish_vi_key_bindings
 
+if status is-interactive
+  # Commands to run in interactive sessions can go here
+  atuin init fish | source
+  fish_vi_key_bindings
+end
