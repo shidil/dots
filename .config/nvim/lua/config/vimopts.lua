@@ -1,49 +1,43 @@
-vim.opt.nu = true
-vim.opt.relativenumber = true
-vim.opt.cursorline = true
+vim.opt.list           = true  -- Show white space characters
+vim.opt.nu             = true  -- Show line numbers
+vim.opt.relativenumber = true  -- Show relative line numbers
+vim.opt.cursorline     = true  -- Highlight line with cursor
+vim.opt.scrolloff      = 8     -- Keep 8 lines above and below the cursor
+vim.opt.wrap           = false -- Disable line wrapping
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.numberwidth    = 2     -- Width of the line number column
+vim.opt.signcolumn     = "yes" -- Always show sign column
+vim.opt.colorcolumn    = "100" -- Highlight column 100 to help identify long lines
 
-vim.opt.smartindent = true
-vim.opt.wrap = false
+vim.opt.autoindent     = true  -- Enable auto indentation
+vim.opt.expandtab      = true  -- Use spaces instead of tabs
+vim.opt.tabstop        = 4     -- Number of spaces for a tab
+vim.opt.softtabstop    = 4     -- Number of spaces for a tab when editing
+vim.opt.shiftwidth     = 4     -- Number of spaces for autoindent
+vim.opt.shiftround     = true  -- Round indent to multiple of shiftwidth
+--vim.opt.smartindent      = true
 
-vim.opt.backup = false
-vim.opt.swapfile = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
 
-vim.opt.hlsearch = true
-vim.opt.incsearch = true
+vim.opt.backup           = false     -- Disable file backup when overwriting
+vim.opt.swapfile         = false     -- Disable swap files
+vim.opt.undodir          = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile         = true      -- Enable persistent undo
 
-vim.opt.signcolumn = "yes"
+vim.opt.hlsearch         = true      -- Enable highlighting of search results
+vim.opt.incsearch        = true      -- Highlight as we type
+vim.opt.inccommand       = "nosplit" -- Shows the effects of a command incrementally in the buffer
 
-vim.opt.colorcolumn = "100"
+vim.opt.shell            = "fish"    -- Use fish shell in vim terminal
 
-vim.opt.shell = "fish";
-
-vim.opt.spell = true
-vim.opt.spelllang = "en_us"
-vim.opt.spellsuggest = "best"
+vim.opt.spell            = true      -- Enable spell check
+vim.opt.spelllang        = "en_us"
+vim.opt.spellsuggest     = "best"
 
 -- disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
+vim.g.loaded_netrw       = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- views can only be fully collapsed with the global statusline
-vim.opt.laststatus = 3
+vim.opt.laststatus       = 3
 
--- Add custom filetype for Tiltfile
-vim.filetype.add({
-  pattern = {
-    ['.*/*Tiltfile'] = 'starlark',
-  },
-})
--- Add custom filetype for .envrc files
-vim.filetype.add({
-  extension = {
-    envrc = "sh"
-  }
-})
+vim.cmd.filetype("plugin indent on") -- Enable filetype detection, plugins, and indentation

@@ -120,7 +120,8 @@ return {
       appearance = {
         -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
-        nerd_font_variant = 'mono'
+        nerd_font_variant = 'mono',
+        use_nvim_cmp_as_default = true,
       },
 
       -- (Default) Only show the documentation popup when manually triggered
@@ -138,7 +139,7 @@ return {
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'avante', 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
         providers = {
           cmdline = {
             min_keyword_length = function(ctx)
@@ -156,5 +157,94 @@ return {
       }
     },
     opts_extend = { "sources.default" }
+  },
+  {
+    "folke/edgy.nvim",
+    event = "VeryLazy",
+    opts = {
+      animate = { enabled = false },
+      exit_when_last = true,
+      right = {
+        {
+          title = "Outline",
+          ft = "aerial",
+          open = "AerialToggle",
+          size = {
+            width = 0.13,
+          },
+        },
+      },
+    }
+  },
+  {
+    'stevearc/aerial.nvim',
+    opts = {
+      close_automatic_events = {
+        "unfocus",
+        "switch_buffer",
+      },
+      show_guides = false,
+      guides = {
+        nested_top = " │ ",
+        mid_item = " ├─",
+        last_item = " └─",
+        whitespace = "    ",
+      },
+      layout = {
+        placement = "window",
+        close_on_select = false,
+        max_width = 45,
+        min_width = 25,
+      },
+      ignore = {
+        buftypes = {},
+      },
+      open_automatic = function()
+        local aerial = require("aerial")
+        return vim.api.nvim_win_get_width(0) > 80 and not aerial.was_closed()
+      end,
+    },
+    -- Optional dependencies
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
+  },
+  {
+    'Bekaboo/dropbar.nvim',
+    config = function()
+      local dropbar_api = require('dropbar.api')
+      vim.keymap.set('n', '<Leader>;', dropbar_api.pick, { desc = 'Pick symbols in winbar' })
+      vim.keymap.set('n', '[;', dropbar_api.goto_context_start, { desc = 'Go to start of current context' })
+      vim.keymap.set('n', '];', dropbar_api.select_next_context, { desc = 'Select next context' })
+    end
+  },
+  {
+    'Wansmer/symbol-usage.nvim',
+    event = 'LspAttach',
+    config = function()
+      require('symbol-usage').setup({
+        text_format = function(symbol)
+          local res = {}
+
+          if symbol.references then
+            local usage = symbol.references == 1 and "reference" or "references"
+            table.insert(
+              res,
+              { ("󰌹  %s %s"):format(symbol.references, usage), "LspCodeLens" }
+            )
+          end
+
+          return res
+        end,
+      })
+    end
+  },
+  {
+    'saecki/crates.nvim',
+    event = { "BufRead Cargo.toml" },
+    config = function()
+      require('crates').setup()
+    end,
   }
 }
