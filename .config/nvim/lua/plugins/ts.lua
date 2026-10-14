@@ -4,7 +4,7 @@ return {
     lazy = false,
     build = ":TSUpdate",
     init = function()
-      require 'nvim-treesitter'.install { 'rust', 'javascript', 'zig', 'typescript', 'go', 'lua', 'yaml' }
+      require 'nvim-treesitter'.install { 'rust', 'javascript', 'zig', 'typescript', 'go', 'lua', 'yaml', 'sql' }
     end
   },
 }

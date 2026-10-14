@@ -1,6 +1,7 @@
 vim.lsp.enable('luals')
 vim.lsp.enable('gopls')
-vim.lsp.enable('tsserver')
+--vim.lsp.enable('tsserver')
+vim.lsp.enable('tsc')
 vim.lsp.enable('jsonls')
 vim.lsp.enable('html')
 vim.lsp.enable('cssls')
@@ -9,6 +10,7 @@ vim.lsp.enable('biome')
 vim.lsp.enable('rust_analyzer')
 vim.lsp.enable('buf_ls')
 vim.lsp.enable('ruff-lsp')
+--vim.lsp.enable('postgres')
 
 -- add somewhere in your config that runs on startup:
 vim.diagnostic.config({
