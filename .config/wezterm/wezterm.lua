@@ -53,6 +53,8 @@ if wezterm.target_triple == 'aarch64-apple-darwin' then
   config.default_prog = { '/Users/shidil/.nix-profile/bin/fish' }
   config.font_size = 15.5
   config.window_decorations = "RESIZE"
+  config.initial_cols = 300
+  config.initial_rows = 300
 end
 
 config.leader = {
