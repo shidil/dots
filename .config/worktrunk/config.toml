@@ -1,0 +1,9 @@
+[commit.generation]
+command = "aichat -m openai:gpt-5.6-luna"
+
+[aliases]
+c = "wt step commit --stage none {{ args }}"
+s = "wt switch {{ args }}"
+sc = "wt switch -c {{ args }}"
+changeset = "wt step diff {{ args }} | aichat 'Write a chaneset'"
+pr = "wt step diff | aichat \"write pull request description based on the diff provided\" | gh pr create -f -F -"
